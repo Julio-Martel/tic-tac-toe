@@ -93,14 +93,13 @@
 	color: #000000;
 }
 
-
 .contenido-opciones {
 	background: darkred;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	opacity: 1;
+	opacity: 0;
 	transition: opacity 1s ease;
 	border: solid 1px darkgrey;
 	border-radius: 5px;
@@ -115,6 +114,30 @@
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+}
+
+
+.tablero {
+	background: #000000;
+	display: grid;
+	width: 100%;
+	height: 100%;
+	max-width: 500px;
+	max-height: 500px;
+	grid-template-rows: repeat(3, 1fr);
+	grid-template-columns: repeat(3, auto);
+	opacity: 0;
+	transition: opacity 1s ease;
+}
+
+.mostrar-tablero {
+	opacity: 1;
+}
+
+.casilla {
+	width: 100%;
+	border: solid 1px darkgrey;
+	cursor: pointer;
 }
 
 .pie-pagina {
