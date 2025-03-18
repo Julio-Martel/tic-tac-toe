@@ -153,8 +153,19 @@
 	backdrop-filter: blur(10px);
 }
 
+.boton-close {
+	position: absolute;
+	font-size: 5rem;
+    font-weight: bold;
+    top: 15px;
+    right: 40px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
 #ventana-instrucciones {
-	width: 50%;
+	font-family: "Tektur", sans-serif;
+	width: 30%;
 	display: flex;
 	background: #000000;
 	justify-content: center;
@@ -164,7 +175,16 @@
 	padding: 1%;
 }
 
+.texto {
+	display: flex;
+	justify-content: center;
+	border: solid 1px darkgrey;
+	border-radius: 5px;
+}
 
+.lista-ordenada {
+	list-style: none;
+}
 
 .pie-pagina {
 	background: #000000;
