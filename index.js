@@ -1,29 +1,51 @@
 const botonPlay = document.getElementById('play-boton');
 const pantallaInicial = document.querySelector('.pantalla-inicial');
 const contenidoPrincipal = document.querySelector('.contenido-principal');
+const tituloPrincipal = document.querySelector('.titulo-principal');
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function generarJuegoSinglePlayer() {
 	contenidoPrincipal.innerHTML = `
 		<div class="tablero">
-			<div class="casilla" id="casilla-1"></div>
-			<div class="casilla" id="casilla-2"></div>
-			<div class="casilla" id="casilla-3"></div>
-			<div class="casilla" id="casilla-4"></div>
-			<div class="casilla" id="casilla-5"></div>
-			<div class="casilla" id="casilla-6"></div>
-			<div class="casilla" id="casilla-7"></div>
-			<div class="casilla" id="casilla-8"></div>
-			<div class="casilla" id="casilla-9"></div>
+			<div class="casilla" id="1"></div>
+			<div class="casilla" id="2"></div>
+			<div class="casilla" id="3"></div>
+			<div class="casilla" id="4"></div>
+			<div class="casilla" id="5"></div>
+			<div class="casilla" id="6"></div>
+			<div class="casilla" id="7"></div>
+			<div class="casilla" id="8"></div>
+			<div class="casilla" id="9"></div>
 		</div>
 	`;	
 
 	await delay(500);
 
 	const tableroJuego = document.querySelector('.tablero');
-
+	const casillasOcupadas = [];
+	const diagonalPrincipal = [1,5,9], diagonalSecundaria = [3,5,7];
+	
 	tableroJuego.classList.add('mostrar-tablero');
+
+	const casillas = document.querySelectorAll('.casilla');
+	
+	let i = 1;
+	for(casilla of casillas) {
+		const casillaValue = document.getElementById(i); 
+		
+		casilla.addEventListener('click',() => {
+			casillaValue.classList.add('simbolo');
+			casillaValue.textContent = "x";
+			casillaValue.style.pointerEvents = "none";			
+			casillasOcupadas.push(casillaValue);
+		});
+
+		i++;
+	}
+
+
+
 }
 
 async function generarJuegoMultiPlayer() {
