@@ -28,23 +28,35 @@ async function generarJuegoSinglePlayer() {
 	
 	tableroJuego.classList.add('mostrar-tablero');
 
-	const casillas = document.querySelectorAll('.casilla');
-	
-	let i = 1;
-	for(casilla of casillas) {
-		const casillaValue = document.getElementById(i); 
+	async function colocarXO() {
+		const casillas = document.querySelectorAll('.casilla');
+		let playerNumber = 1;
+		let i = 1;
 		
-		casilla.addEventListener('click',() => {
-			casillaValue.classList.add('simbolo');
-			casillaValue.textContent = "x";
-			casillaValue.style.pointerEvents = "none";			
-			casillasOcupadas.push(casillaValue);
-		});
+		for(casilla of casillas) {
+			const casillaValue = document.getElementById(i); 
+			
+			casilla.addEventListener('click',() => {
+				if (playerNumber === 1) {
+					casillaValue.classList.add('simbolo');
+					casillaValue.textContent = "x";
+					casillaValue.style.pointerEvents = "none";			
+					casillasOcupadas.push(casillaValue);
+					playerNumber++;	
+				} else {
+					casillaValue.classList.add('simbolo');
+					casillaValue.textContent = "0";
+					casillaValue.style.pointerEvents = "none";			
+					casillasOcupadas.push(casillaValue);
+					playerNumber = 1;					
+				}
+			});
 
-		i++;
+			i++;
+		}
 	}
 
-
+	colocarXO();
 
 }
 
