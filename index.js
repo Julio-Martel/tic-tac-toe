@@ -25,7 +25,10 @@ async function generarJuegoSinglePlayer() {
 	const tableroJuego = document.querySelector('.tablero');
 	const casillasOcupadas = [];
 	const diagonalPrincipal = [1,5,9], diagonalSecundaria = [3,5,7];
-	
+	const tablaCasillas = [[0,0,0],
+						   [0,0,0],
+						   [0,0,0]];
+
 	tableroJuego.classList.add('mostrar-tablero');
 
 	async function colocarXO() {
@@ -45,7 +48,7 @@ async function generarJuegoSinglePlayer() {
 					playerNumber++;	
 				} else {
 					casillaValue.classList.add('simbolo');
-					casillaValue.textContent = "0";
+					casillaValue.textContent = "o";
 					casillaValue.style.pointerEvents = "none";			
 					casillasOcupadas.push(casillaValue);
 					playerNumber = 1;					
@@ -56,8 +59,12 @@ async function generarJuegoSinglePlayer() {
 		}
 	}
 
-	colocarXO();
+	async function verificarFilasArreglo() {
+		if()
+	}
 
+	colocarXO();
+	verificarFilasArreglo();
 }
 
 async function generarJuegoMultiPlayer() {
