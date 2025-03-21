@@ -39,31 +39,41 @@ async function generarJuegoSinglePlayer() {
 		for(casilla of casillas) {
 			const casillaValue = casilla.getAttribute('data-value'); 
 			const casillaId = document.getElementById(casillaValue);
-			const arregloCoordenadas = casillaId.split('-');
+			const arregloCoordenadas = casillaValue.split('-');
 
 			casilla.addEventListener('click',() => {
 				if (playerNumber === 1) {
-					casillaValue.classList.add('simbolo');
-					casillaValue.textContent = "x";
-					casillaValue.style.pointerEvents = "none";			
-					casillasOcupadas.push(casillaValue);
+					casillaId.classList.add('simbolo');
+					casillaId.textContent = "x";
+					casillaId.style.pointerEvents = "none";			
+					casillasOcupadas.push(casillaId);
 				
-					
+					const valorX = arregloCoordenadas[0];
+					const valorY = arregloCoordenadas[1];
 
-					tablaCasillas[0][i] = "x"; // arreglar esto para agregar al tablero y luego de ir a verificar
+					tablaCasillas[valorX][valorY] = "x";
 					playerNumber++;	
 				} else {
-					casillaValue.classList.add('simbolo');
-					casillaValue.textContent = "o";
-					casillaValue.style.pointerEvents = "none";			
-					casillasOcupadas.push(casillaValue);
-					tablaCasillas[0][i] = "o"; // arreglar esto para agregar al tablero y luego de ir a verificar
+					casillaId.classList.add('simbolo');
+					casillaId.textContent = "o";
+					casillaId.style.pointerEvents = "none";			
+					casillasOcupadas.push(casillaId);
+
+					const valorX = arregloCoordenadas[0];
+					const valorY = arregloCoordenadas[1];
+					tablaCasillas[valorX][valorY] = "o";
 					playerNumber = 1;					
 				}
+			
+				if(tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {
+					console.log('YEAH!');
+				}
+
 			});
 
 			i++;
 		}
+
 
 
 
