@@ -8,15 +8,15 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 async function generarJuegoSinglePlayer() {
 	contenidoPrincipal.innerHTML = `
 		<div class="tablero">
-			<div class="casilla" id="1"></div>
-			<div class="casilla" id="2"></div>
-			<div class="casilla" id="3"></div>
-			<div class="casilla" id="4"></div>
-			<div class="casilla" id="5"></div>
-			<div class="casilla" id="6"></div>
-			<div class="casilla" id="7"></div>
-			<div class="casilla" id="8"></div>
-			<div class="casilla" id="9"></div>
+			<div class="casilla" id="0-0" data-value = "0-0"></div>
+			<div class="casilla" id="0-1" data-value = "0-1"></div>
+			<div class="casilla" id="0-2" data-value = "0-2"></div>
+			<div class="casilla" id="1-0" data-value = "1-0"></div>
+			<div class="casilla" id="1-1" data-value = "1-1"></div>
+			<div class="casilla" id="1-2" data-value = "1-2"></div>
+			<div class="casilla" id="2-0" data-value = "2-0"></div>
+			<div class="casilla" id="2-1" data-value = "2-1"></div>
+			<div class="casilla" id="2-2" data-value = "2-2"></div>
 		</div>
 	`;	
 
@@ -34,37 +34,43 @@ async function generarJuegoSinglePlayer() {
 	async function colocarXO() {
 		const casillas = document.querySelectorAll('.casilla');
 		let playerNumber = 1;
-		let i = 1;
+		let i = 0;
 		
 		for(casilla of casillas) {
-			const casillaValue = document.getElementById(i); 
-			
+			const casillaValue = casilla.getAttribute('data-value'); 
+			const casillaId = document.getElementById(casillaValue);
+			const arregloCoordenadas = casillaId.split('-');
+
 			casilla.addEventListener('click',() => {
 				if (playerNumber === 1) {
 					casillaValue.classList.add('simbolo');
 					casillaValue.textContent = "x";
 					casillaValue.style.pointerEvents = "none";			
 					casillasOcupadas.push(casillaValue);
+				
+					
+
+					tablaCasillas[0][i] = "x"; // arreglar esto para agregar al tablero y luego de ir a verificar
 					playerNumber++;	
 				} else {
 					casillaValue.classList.add('simbolo');
 					casillaValue.textContent = "o";
 					casillaValue.style.pointerEvents = "none";			
 					casillasOcupadas.push(casillaValue);
+					tablaCasillas[0][i] = "o"; // arreglar esto para agregar al tablero y luego de ir a verificar
 					playerNumber = 1;					
 				}
 			});
 
 			i++;
 		}
+
+
+
 	}
 
-	async function verificarFilasArreglo() {
-		if()
-	}
 
 	colocarXO();
-	verificarFilasArreglo();
 }
 
 async function generarJuegoMultiPlayer() {
