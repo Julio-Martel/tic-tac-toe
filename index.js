@@ -18,6 +18,21 @@ async function generarJuegoSinglePlayer() {
 			<div class="casilla" id="2-1" data-value = "2-1"></div>
 			<div class="casilla" id="2-2" data-value = "2-2"></div>
 		</div>
+
+		<div class = "ventana-modal" id="victoria-modal">
+			<div class = "contenido-modal">
+			</div>
+		</div>
+	
+		<div class = "ventana-modal" id="derrota-modal">
+			<div class = "contenido-modal">
+			</div>
+		</div>
+
+		<div class = "ventana-modal" id="empate-modal">
+			<div class = "contenido-modal">
+			</div>
+		</div>
 	`;	
 
 	await delay(500);
@@ -65,8 +80,31 @@ async function generarJuegoSinglePlayer() {
 					playerNumber = 1;					
 				}
 			
+
+				const generarModalVictoria = () => {
+
+				}
+
 				if(tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {
-					console.log('YEAH!');
+					await delay(500);
+					generarModalVictoria();
+				} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
+					await delay(500);
+					generarModalVictoria();
+				} else if (tablaCasillas[2][0] === "x" && tablaCasillas[2][1] === "x" && tablaCasillas[2][2] === "x") {
+					await delay(500);
+					generarModalVictoria();
+				} else if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {
+					await delay(500);
+					generarModalVictoria();
+				} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
+					await delay(500);
+					generarModalVictoria();
+				} else if (tablaCasillas[2][0] === "x" && tablaCasillas[2][1] === "x" && tablaCasillas[2][2] === "x") {
+					await delay(500);
+					generarModalVictoria()
+				} else {
+
 				}
 
 			});
