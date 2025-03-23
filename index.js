@@ -19,18 +19,18 @@ async function generarJuegoSinglePlayer() {
 			<div class="casilla" id="2-2" data-value = "2-2"></div>
 		</div>
 
-		<div class = "ventana-modal" id="victoria-modal">
-			<div class = "contenido-modal">
+		<div class = "ventana-modal">
+			<div class = "contenido-modal" id="victoria-modal">
 			</div>
 		</div>
 	
-		<div class = "ventana-modal" id="derrota-modal">
-			<div class = "contenido-modal">
+		<div class = "ventana-modal">
+			<div class = "contenido-modal" id="derrota-modal">
 			</div>
 		</div>
 
-		<div class = "ventana-modal" id="empate-modal">
-			<div class = "contenido-modal">
+		<div class = "ventana-modal">
+			<div class = "contenido-modal" id="empate-modal">
 			</div>
 		</div>
 	`;	
@@ -46,79 +46,53 @@ async function generarJuegoSinglePlayer() {
 
 	tableroJuego.classList.add('mostrar-tablero');
 
-	async function colocarXO() {
-		const casillas = document.querySelectorAll('.casilla');
-		let playerNumber = 1;
-		let i = 0;
+	const casillas = document.querySelectorAll('.casilla');
+	let playerNumber = 1;
+	let i = 0;
 		
-		for(casilla of casillas) {
-			const casillaValue = casilla.getAttribute('data-value'); 
-			const casillaId = document.getElementById(casillaValue);
-			const arregloCoordenadas = casillaValue.split('-');
+	for(casilla of casillas) {
+		const casillaValue = casilla.getAttribute('data-value'); 
+		const casillaId = document.getElementById(casillaValue);
+		const arregloCoordenadas = casillaValue.split('-');
 
-			casilla.addEventListener('click',() => {
-				if (playerNumber === 1) {
-					casillaId.classList.add('simbolo');
-					casillaId.textContent = "x";
-					casillaId.style.pointerEvents = "none";			
-					casillasOcupadas.push(casillaId);
+		casilla.addEventListener('click',() => {
+			if (playerNumber === 1) {
 				
-					const valorX = arregloCoordenadas[0];
-					const valorY = arregloCoordenadas[1];
+				casillaId.classList.add('simbolo');
+				casillaId.textContent = "x";
+				casillaId.style.pointerEvents = "none";			
+				casillasOcupadas.push(casillaId);
+				
+				const valorX = arregloCoordenadas[0];
+				const valorY = arregloCoordenadas[1];
 
-					tablaCasillas[valorX][valorY] = "x";
-					playerNumber++;	
-				} else {
-					casillaId.classList.add('simbolo');
-					casillaId.textContent = "o";
-					casillaId.style.pointerEvents = "none";			
-					casillasOcupadas.push(casillaId);
+				tablaCasillas[valorX][valorY] = "x";
+				playerNumber++;	
 
-					const valorX = arregloCoordenadas[0];
-					const valorY = arregloCoordenadas[1];
-					tablaCasillas[valorX][valorY] = "o";
-					playerNumber = 1;					
-				}
-			
-
-				const generarModalVictoria = () => {
-
-				}
-
-				if(tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {
-					await delay(500);
-					generarModalVictoria();
+				if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {
+					console.log('HAPPY'); // ARREGLAR ESTO, ASI PODER MOSTRAR EL MODAL
 				} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
-					await delay(500);
-					generarModalVictoria();
-				} else if (tablaCasillas[2][0] === "x" && tablaCasillas[2][1] === "x" && tablaCasillas[2][2] === "x") {
-					await delay(500);
-					generarModalVictoria();
-				} else if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {
-					await delay(500);
-					generarModalVictoria();
-				} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
-					await delay(500);
-					generarModalVictoria();
-				} else if (tablaCasillas[2][0] === "x" && tablaCasillas[2][1] === "x" && tablaCasillas[2][2] === "x") {
-					await delay(500);
-					generarModalVictoria()
-				} else {
+					console.log('HAPPY');
+				} // SEGUIR AGREGANDO PARA LUEGO VER EL TEMA DE LOS MODALES
+							
+				
+			} else {
+				
+				casillaId.classList.add('simbolo');
+				casillaId.textContent = "o";
+				casillaId.style.pointerEvents = "none";			
+				casillasOcupadas.push(casillaId);
 
-				}
+				const valorX = arregloCoordenadas[0];
+				const valorY = arregloCoordenadas[1];
+				tablaCasillas[valorX][valorY] = "o";
+				playerNumber = 1;					
+			}
 
-			});
+		});
 
-			i++;
-		}
-
-
-
-
+		i++;
 	}
-
-
-	colocarXO();
 }
 
 async function generarJuegoMultiPlayer() {
