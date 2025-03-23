@@ -125,7 +125,7 @@
 	max-width: 500px;
 	max-height: 500px;
 	grid-template-rows: repeat(3, 1fr);
-	grid-template-columns: repeat(3, auto);
+	grid-template-columns: repeat(3, 1fr);
 	opacity: 0;
 	transition: opacity 1s ease;
 }
@@ -138,8 +138,10 @@
 	width: 100%;
 	border: solid 1px darkgrey;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
-
 
 .ventana-modal {
 	display: none;
@@ -186,6 +188,12 @@
 	list-style: none;
 }
 
+
+.simbolo {
+	color: #ffffff;
+	font-size: 2rem;
+}
+
 .pie-pagina {
 	background: #000000;
 	display: flex;
@@ -196,3 +204,27 @@
 	font-family: "Tektur", sans-serif;
 }
 
+.contenido-modal {
+	background: #000000;
+	width: 30%;
+	height: 25%;
+	max-height: 200px;
+	border: solid 1px darkgrey;
+	border-radius: 5px;
+}
+
+#contenido-victoria {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-family: "Tektur", sans-serif;
+	font-size: 2rem;
+	color: #ffffff;
+}
+
+
+.tamaño-icono {
+	width: 50px;
+	height: 50px;
+}
