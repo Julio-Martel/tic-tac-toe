@@ -19,18 +19,12 @@ async function generarJuegoMultiPlayer() {
 			<div class="casilla" id="2-2" data-value = "2-2"></div>
 		</div>
 
-		<div class = "ventana-modal" id="ventana-modal-1">
-			<div class = "contenido-modal" id="contenido-victoria">
-			</div>
-		</div>
-	
-		<div class = "ventana-modal">
-			<div class = "contenido-modal" id="contenido-derrota">
-			</div>
-		</div>
-
-		<div class = "ventana-modal" id="ventana-modal-3">
-			<div class = "contenido-modal" id="contenido-empate">
+		<div class="ventana-modal" id="ventana-modal-1">
+			<div class="contenido-modal" id="contenido-victoria">
+				<div class="contenedor-botones-final">
+					<button class="boton-nuevo" id="reiniciar-partida">Restart game</button>
+					<button class="boton-nuevo" id="regresar-menu">Main Menu</button>				
+				</div>			
 			</div>
 		</div>
 	`;	
@@ -48,16 +42,41 @@ async function generarJuegoMultiPlayer() {
 		const casillas = document.querySelectorAll('.casilla');
 		const ventanaModalVictoria = document.getElementById('ventana-modal-1');
 		const contenidoModalVictoria = document.getElementById('contenido-victoria');
+		const textoResultado = document.createElement("h2");
+
 		
 		casillas.forEach(casilla => casilla.style.pointerEvents = "none");
 
+		textoResultado.textContent = resultado;
 
 		await delay(2000);
 
 		ventanaModalVictoria.style.display = "flex";
-		contenidoModalVictoria.textContent = resultado;
+		contenidoModalVictoria.appendChild(textoResultado);
 
 		return;	
+	}
+
+	async function generarBrillo(coord1,coord2,coord3) {
+		const brillar1 = document.getElementById(coord1);
+		const brillar2 = document.getElementById(coord2);
+		const brillar3 = document.getElementById(coord3);
+
+		const icono1 = brillar1.querySelector('.tamaño-icono');
+		icono1.classList.add('ejecutar-animacion');
+		
+		const icono2 = brillar2.querySelector('.tamaño-icono');
+		icono2.classList.add('ejecutar-animacion');
+		
+		const icono3 = brillar3.querySelector('.tamaño-icono');
+		icono3.classList.add('ejecutar-animacion');
+
+		await delay(2000);
+
+		icono1.classList.remove('ejecutar-animacion');
+		icono2.classList.remove('ejecutar-animacion');
+		icono3.classList.remove('ejecutar-animacion');
+
 	}
 
 	const casillas = document.querySelectorAll('.casilla');
@@ -88,24 +107,55 @@ async function generarJuegoMultiPlayer() {
 
 				tablaCasillas[valorX][valorY] = "x";
 				contadorDeCasillasOcupadas++;
-				console.log(contadorDeCasillasOcupadas);
 				playerNumber++;	
 
 				if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {			
+					const coordenada1 = "0-0";
+					const coordenada2 = "0-1";
+					const coordenada3 = "0-2";
+					generarBrillo(coordenada1,coordenada2,coordenada3);
 					generarVentanaModal(ganaElJugador1);		
 				} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
+					const coordenada4 = "1-0";
+					const coordenada5 = "1-1";
+					const coordenada6 = "1-2";
+					generarBrillo(coordenada4,coordenada5,coordenada6);				
 					generarVentanaModal(ganaElJugador1);
 				} else if (tablaCasillas[2][0] === "x" && tablaCasillas[2][1] === "x" && tablaCasillas[2][2] === "x") {
+					const coordenada7 = "2-0";
+					const coordenada8 = "2-1";
+					const coordenada9 = "2-2";
+					generarBrillo(coordenada7,coordenada8,coordenada9);						
 					generarVentanaModal(ganaElJugador1);			
 				} else if (tablaCasillas[0][0] === "x" && tablaCasillas[1][0] === "x" && tablaCasillas[2][0] === "x") {
+					const coordenada10 = "0-0";
+					const coordenada11 = "1-0";
+					const coordenada12 = "2-0";
+					generarBrillo(coordenada10,coordenada11,coordenada12);						
 					generarVentanaModal(ganaElJugador1);
 				} else if (tablaCasillas[0][1] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][1] === "x") {
+					const coordenada13 = "0-1";
+					const coordenada14 = "1-1";
+					const coordenada15 = "2-1";
+					generarBrillo(coordenada13,coordenada14,coordenada15);							
 					generarVentanaModal(ganaElJugador1);
 				} else if (tablaCasillas[0][2] === "x" && tablaCasillas[1][2] === "x" && tablaCasillas[2][2] === "x") {
+					const coordenada16 = "0-2";
+					const coordenada17 = "1-2";
+					const coordenada18 = "2-2";
+					generarBrillo(coordenada16,coordenada17,coordenada18);							
 					generarVentanaModal(ganaElJugador1);		
 				} else if (tablaCasillas[0][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][2] === "x") {
+					const coordenada19 = "0-0";
+					const coordenada20 = "1-1";
+					const coordenada21 = "2-2";
+					generarBrillo(coordenada19,coordenada20,coordenada21);						
 					generarVentanaModal(ganaElJugador1);
 				} else if (tablaCasillas[0][2] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][0] === "x") {
+					const coordenada22 = "0-2";
+					const coordenada23 = "1-1";
+					const coordenada24 = "2-0";
+					generarBrillo(coordenada22,coordenada23,coordenada24);						
 					generarVentanaModal(ganaElJugador1);
 				} 
 				
@@ -127,24 +177,55 @@ async function generarJuegoMultiPlayer() {
 				const valorY = arregloCoordenadas[1];
 				tablaCasillas[valorX][valorY] = "o";
 				contadorDeCasillasOcupadas++;
-				console.log(contadorDeCasillasOcupadas);
 				playerNumber = 1;					
 			
 				if (tablaCasillas[0][0] === "o" && tablaCasillas[0][1] === "o" && tablaCasillas[0][2] === "o") {			
+					const coordenada1 = "0-0";
+					const coordenada2 = "0-1";
+					const coordenada3 = "0-2";
+					generarBrillo(coordenada1,coordenada2,coordenada3);					
 					generarVentanaModal(ganaElJugador2);		
 				} else if (tablaCasillas[1][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[1][2] === "o") {
+					const coordenada4 = "1-0";
+					const coordenada5 = "1-1";
+					const coordenada6 = "1-2";
+					generarBrillo(coordenada4,coordenada5,coordenada6);					
 					generarVentanaModal(ganaElJugador2);
 				} else if (tablaCasillas[2][0] === "o" && tablaCasillas[2][1] === "o" && tablaCasillas[2][2] === "o") {
+					const coordenada7 = "2-0";
+					const coordenada8 = "2-1";
+					const coordenada9 = "2-2";
+					generarBrillo(coordenada7,coordenada8,coordenada9);						
 					generarVentanaModal(ganaElJugador2);			
 				} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][0] === "o" && tablaCasillas[2][0] === "o") {
+					const coordenada10 = "0-0";
+					const coordenada11 = "1-0";
+					const coordenada12 = "2-0";
+					generarBrillo(coordenada10,coordenada11,coordenada12);						
 					generarVentanaModal(ganaElJugador2);
 				} else if (tablaCasillas[0][1] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][1] === "o") {
+					const coordenada13 = "0-1";
+					const coordenada14 = "1-1";
+					const coordenada15 = "2-1";
+					generarBrillo(coordenada13,coordenada14,coordenada15);					
 					generarVentanaModal(ganaElJugador2);
 				} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][2] === "o" && tablaCasillas[2][2] === "o") {
+					const coordenada16 = "0-2";
+					const coordenada17 = "1-2";
+					const coordenada18 = "2-2";
+					generarBrillo(coordenada16,coordenada17,coordenada18);						
 					generarVentanaModal(ganaElJugador2);		
 				} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][2] === "o") {
+					const coordenada19 = "0-0";
+					const coordenada20 = "1-1";
+					const coordenada21 = "2-2";
+					generarBrillo(coordenada19,coordenada20,coordenada21);						
 					generarVentanaModal(ganaElJugador2);
 				} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][0] === "o") {
+					const coordenada22 = "0-2";
+					const coordenada23 = "1-1";
+					const coordenada24 = "2-0";
+					generarBrillo(coordenada22,coordenada23,coordenada24);						
 					generarVentanaModal(ganaElJugador2);
 				} 
 
@@ -157,8 +238,7 @@ async function generarJuegoMultiPlayer() {
 		});
 
 		i++;
-	}
-}
+	}} 
 
 async function mostrarOpcionesDeJuego() {
 	
