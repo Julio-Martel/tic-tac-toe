@@ -20,17 +20,18 @@ async function generarJuegoSinglePlayer() {
 		</div>
 
 		<div class = "ventana-modal">
-			<div class = "contenido-modal" id="victoria-modal">
+			<div class = "contenido-modal" id="contenido-victoria">
+				has ganado
 			</div>
 		</div>
 	
 		<div class = "ventana-modal">
-			<div class = "contenido-modal" id="derrota-modal">
+			<div class = "contenido-modal" id="contenido-derrota">
 			</div>
 		</div>
 
 		<div class = "ventana-modal">
-			<div class = "contenido-modal" id="empate-modal">
+			<div class = "contenido-modal" id="contenido-empate">
 			</div>
 		</div>
 	`;	
@@ -44,6 +45,11 @@ async function generarJuegoSinglePlayer() {
 						   [0,0,0],
 						   [0,0,0]];
 
+	const ventanaModal  = document.querySelector('.ventana-modal');
+	const contenidoModalPartidaGanada = document.getElementById('contenido-victoria');
+	const contenidoModalPartidaPerdida = document.getElementById('contenido-derrota');
+	const contenidoModalPartidaEmpate = document.getElementById('contenido-empate');
+
 	tableroJuego.classList.add('mostrar-tablero');
 
 	const casillas = document.querySelectorAll('.casilla');
@@ -55,7 +61,7 @@ async function generarJuegoSinglePlayer() {
 		const casillaId = document.getElementById(casillaValue);
 		const arregloCoordenadas = casillaValue.split('-');
 
-		casilla.addEventListener('click',() => {
+		casilla.addEventListener('click', async () => {
 			if (playerNumber === 1) {
 				
 				casillaId.classList.add('simbolo');
@@ -70,11 +76,16 @@ async function generarJuegoSinglePlayer() {
 				playerNumber++;	
 
 				if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {
-					console.log('HAPPY'); // ARREGLAR ESTO, ASI PODER MOSTRAR EL MODAL
+				
+					await delay(1000);
+					casillas.forEach(casilla => casilla.style.pointerEvents = "none");
+					ventanaModal.style.display = "flex";
+					
+					
 				} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
 					console.log('HAPPY');
-				} // SEGUIR AGREGANDO PARA LUEGO VER EL TEMA DE LOS MODALES
-							
+				} 
+
 				
 			} else {
 				
