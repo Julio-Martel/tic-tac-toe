@@ -5,7 +5,7 @@ const tituloPrincipal = document.querySelector('.titulo-principal');
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-async function generarJuegoSinglePlayer() {
+async function generarJuegoMultiPlayer() {
 	contenidoPrincipal.innerHTML = `
 		<div class="tablero">
 			<div class="casilla" id="0-0" data-value = "0-0"></div>
@@ -19,9 +19,8 @@ async function generarJuegoSinglePlayer() {
 			<div class="casilla" id="2-2" data-value = "2-2"></div>
 		</div>
 
-		<div class = "ventana-modal">
+		<div class = "ventana-modal" id="ventana-modal-1">
 			<div class = "contenido-modal" id="contenido-victoria">
-				has ganado
 			</div>
 		</div>
 	
@@ -30,7 +29,7 @@ async function generarJuegoSinglePlayer() {
 			</div>
 		</div>
 
-		<div class = "ventana-modal">
+		<div class = "ventana-modal" id="ventana-modal-3">
 			<div class = "contenido-modal" id="contenido-empate">
 			</div>
 		</div>
@@ -39,27 +38,38 @@ async function generarJuegoSinglePlayer() {
 	await delay(500);
 
 	const tableroJuego = document.querySelector('.tablero');
-	const casillasOcupadas = [];
-	const diagonalPrincipal = [1,5,9], diagonalSecundaria = [3,5,7];
 	const tablaCasillas = [[0,0,0],
 						   [0,0,0],
 						   [0,0,0]];
 
-	const ventanaModal  = document.querySelector('.ventana-modal');
-	const contenidoModalPartidaGanada = document.getElementById('contenido-victoria');
-	const contenidoModalPartidaPerdida = document.getElementById('contenido-derrota');
-	const contenidoModalPartidaEmpate = document.getElementById('contenido-empate');
-
 	tableroJuego.classList.add('mostrar-tablero');
+
+	async function generarVentanaModal(resultado) {
+		const casillas = document.querySelectorAll('.casilla');
+		const ventanaModalVictoria = document.getElementById('ventana-modal-1');
+		const contenidoModalVictoria = document.getElementById('contenido-victoria');
+		
+		casillas.forEach(casilla => casilla.style.pointerEvents = "none");
+
+		await delay(2000);
+
+		ventanaModalVictoria.style.display = "flex";
+		contenidoModalVictoria.textContent = resultado;
+
+		return;	
+	}
 
 	const casillas = document.querySelectorAll('.casilla');
 	let playerNumber = 1;
 	let i = 0;
-		
+	let contadorDeCasillasOcupadas = 0;	
 	for(casilla of casillas) {
 		const casillaValue = casilla.getAttribute('data-value'); 
 		const casillaId = document.getElementById(casillaValue);
 		const arregloCoordenadas = casillaValue.split('-');
+		const ganaElJugador1 = "Gana el jugador 1";
+		const ganaElJugador2 = "Gana el jugador 2";
+		const empate = "Empate!"
 
 		casilla.addEventListener('click', async () => {
 			if (playerNumber === 1) {
@@ -67,37 +77,72 @@ async function generarJuegoSinglePlayer() {
 				casillaId.classList.add('simbolo');
 				casillaId.textContent = "x";
 				casillaId.style.pointerEvents = "none";			
-				casillasOcupadas.push(casillaId);
 				
 				const valorX = arregloCoordenadas[0];
 				const valorY = arregloCoordenadas[1];
 
 				tablaCasillas[valorX][valorY] = "x";
+				contadorDeCasillasOcupadas++;
+				console.log(contadorDeCasillasOcupadas);
 				playerNumber++;	
 
-				if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {
-				
-					await delay(1000);
-					casillas.forEach(casilla => casilla.style.pointerEvents = "none");
-					ventanaModal.style.display = "flex";
-					
-					
+				if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {			
+					generarVentanaModal(ganaElJugador1);		
 				} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
-					console.log('HAPPY');
+					generarVentanaModal(ganaElJugador1);
+				} else if (tablaCasillas[2][0] === "x" && tablaCasillas[2][1] === "x" && tablaCasillas[2][2] === "x") {
+					generarVentanaModal(ganaElJugador1);			
+				} else if (tablaCasillas[0][0] === "x" && tablaCasillas[1][0] === "x" && tablaCasillas[2][0] === "x") {
+					generarVentanaModal(ganaElJugador1);
+				} else if (tablaCasillas[0][1] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][1] === "x") {
+					generarVentanaModal(ganaElJugador1);
+				} else if (tablaCasillas[0][2] === "x" && tablaCasillas[1][2] === "x" && tablaCasillas[2][2] === "x") {
+					generarVentanaModal(ganaElJugador1);		
+				} else if (tablaCasillas[0][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][2] === "x") {
+					generarVentanaModal(ganaElJugador1);
+				} else if (tablaCasillas[0][2] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][0] === "x") {
+					generarVentanaModal(ganaElJugador1);
 				} 
-
 				
+				if (contadorDeCasillasOcupadas === 9) {
+					generarVentanaModal(empate);
+				}
+
 			} else {
 				
 				casillaId.classList.add('simbolo');
 				casillaId.textContent = "o";
 				casillaId.style.pointerEvents = "none";			
-				casillasOcupadas.push(casillaId);
 
 				const valorX = arregloCoordenadas[0];
 				const valorY = arregloCoordenadas[1];
 				tablaCasillas[valorX][valorY] = "o";
+				contadorDeCasillasOcupadas++;
+				console.log(contadorDeCasillasOcupadas);
 				playerNumber = 1;					
+			
+				if (tablaCasillas[0][0] === "o" && tablaCasillas[0][1] === "o" && tablaCasillas[0][2] === "o") {			
+					generarVentanaModal(ganaElJugador2);		
+				} else if (tablaCasillas[1][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[1][2] === "o") {
+					generarVentanaModal(ganaElJugador2);
+				} else if (tablaCasillas[2][0] === "o" && tablaCasillas[2][1] === "o" && tablaCasillas[2][2] === "o") {
+					generarVentanaModal(ganaElJugador2);			
+				} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][0] === "o" && tablaCasillas[2][0] === "o") {
+					generarVentanaModal(ganaElJugador2);
+				} else if (tablaCasillas[0][1] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][1] === "o") {
+					generarVentanaModal(ganaElJugador2);
+				} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][2] === "o" && tablaCasillas[2][2] === "o") {
+					generarVentanaModal(ganaElJugador2);		
+				} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][2] === "o") {
+					generarVentanaModal(ganaElJugador2);
+				} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][0] === "o") {
+					generarVentanaModal(ganaElJugador2);
+				} 
+
+				if (contadorDeCasillasOcupadas === 9) {
+					generarVentanaModal(empate);
+				}
+
 			}
 
 		});
@@ -105,27 +150,6 @@ async function generarJuegoSinglePlayer() {
 		i++;
 	}
 }
-
-async function generarJuegoMultiPlayer() {
-	contenidoPrincipal.innerHTML = `
-		<div class="tablero">
-			<div class="casilla" id="casilla-1"></div>
-			<div class="casilla" id="casilla-2"></div>
-			<div class="casilla" id="casilla-3"></div>
-			<div class="casilla" id="casilla-4"></div>
-			<div class="casilla" id="casilla-5"></div>
-			<div class="casilla" id="casilla-6"></div>
-			<div class="casilla" id="casilla-7"></div>
-			<div class="casilla" id="casilla-8"></div>
-			<div class="casilla" id="casilla-9"></div>
-		</div>
-	`;	
-
-	await delay(500);
-
-	const tableroJuego = document.querySelector('.tablero');
-
-	tableroJuego.classList.add('mostrar-tablero');	}
 
 async function mostrarOpcionesDeJuego() {
 	
@@ -169,7 +193,6 @@ async function mostrarOpcionesDeJuego() {
 	
 	contenidoOpciones.classList.add('mostrar-contenido-opciones');
 
-	botonSinglePlayer.addEventListener('click', generarJuegoSinglePlayer);
 	botonMultiPlayer.addEventListener('click', generarJuegoMultiPlayer);
 	botonInstrucciones.addEventListener('click', () => {
 		ventanaModalInstrucciones.style.display = "flex";
