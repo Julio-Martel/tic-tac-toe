@@ -51,6 +51,7 @@ async function generarJuegoMultiPlayer() {
 		
 		casillas.forEach(casilla => casilla.style.pointerEvents = "none");
 
+
 		await delay(2000);
 
 		ventanaModalVictoria.style.display = "flex";
@@ -74,8 +75,12 @@ async function generarJuegoMultiPlayer() {
 		casilla.addEventListener('click', async () => {
 			if (playerNumber === 1) {
 				
-				casillaId.classList.add('simbolo');
-				casillaId.textContent = "x";
+				const iconoX = document.createElement("img");
+				casillaId.appendChild(iconoX);
+				iconoX.src = "images/Tc-X-min.png";
+				iconoX.classList.add('tamaño-icono');
+				await delay(50);
+				iconoX.classList.add('mostrar-icono');
 				casillaId.style.pointerEvents = "none";			
 				
 				const valorX = arregloCoordenadas[0];
@@ -110,9 +115,13 @@ async function generarJuegoMultiPlayer() {
 
 			} else {
 				
-				casillaId.classList.add('simbolo');
-				casillaId.textContent = "o";
-				casillaId.style.pointerEvents = "none";			
+				const iconoO = document.createElement("img");
+				casillaId.appendChild(iconoO);
+				iconoO.src = "images/Tc-O-min.png";
+				iconoO.classList.add('tamaño-icono');
+				await delay(50);
+				iconoO.classList.add('mostrar-icono');
+				casillaId.style.pointerEvents = "none";				
 
 				const valorX = arregloCoordenadas[0];
 				const valorY = arregloCoordenadas[1];
