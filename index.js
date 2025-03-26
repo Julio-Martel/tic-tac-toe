@@ -2,6 +2,8 @@ const botonPlay = document.getElementById('play-boton');
 const pantallaInicial = document.querySelector('.pantalla-inicial');
 const contenidoPrincipal = document.querySelector('.contenido-principal');
 const tituloPrincipal = document.querySelector('.titulo-principal');
+const transition = new Audio('audios/transition.mp3');
+const win = new Audio('audios/win.mp3');
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -35,6 +37,14 @@ async function generarJuegoMultiPlayer() {
 	const tablaCasillas = [[0,0,0],
 						   [0,0,0],
 						   [0,0,0]];
+
+    const reiniciarJuego = document.getElementById('reiniciar-partida');
+    const volverAlMenu = document.getElementById('regresar-menu');
+
+   	reiniciarJuego.addEventListener('click', generarJuegoMultiPlayer);
+   	reiniciarJuego.addEventListener('click', () => transition.play());
+   	volverAlMenu.addEventListener('click', mostrarOpcionesDeJuego);
+   	volverAlMenu.addEventListener('click', () => transition.play());
 
 	tableroJuego.classList.add('mostrar-tablero');
 
@@ -70,6 +80,8 @@ async function generarJuegoMultiPlayer() {
 		
 		const icono3 = brillar3.querySelector('.tamaño-icono');
 		icono3.classList.add('ejecutar-animacion');
+
+		win.play();
 
 		await delay(2000);
 
@@ -229,6 +241,8 @@ async function generarJuegoMultiPlayer() {
 					generarVentanaModal(ganaElJugador2);
 				} 
 
+				// PENSAR UNA CONDICIONAL EN LA QUE SI POR EJEMPLO PARA COMPLETAR EL TABLERO NOS QUEDA UNA SOLA FILA O COLUMNA, ESTA SOLO MUESTRA EL CARTEL DE VICTORIA Y NO DE EMPATE
+
 				if (contadorDeCasillasOcupadas === 9) {
 					generarVentanaModal(empate);
 				}
@@ -248,7 +262,7 @@ async function mostrarOpcionesDeJuego() {
 
 	contenidoPrincipal.innerHTML = `		
 		<div class="contenido-opciones">
-				<h1 class="titulo-principal">Tic-Tac-Toc-Game</h1>
+				<h1 class="titulo-principal" id="main-menu">Main Menu</h1>
 				<div class="contenedor-botones-opciones">
 					<button class="boton" id="single-player">Single player</button>
 					<button class="boton" id="multi-player">Multiplayer</button>
@@ -282,6 +296,7 @@ async function mostrarOpcionesDeJuego() {
 	
 	contenidoOpciones.classList.add('mostrar-contenido-opciones');
 
+	botonMultiPlayer.addEventListener('click', () => transition.play());
 	botonMultiPlayer.addEventListener('click', generarJuegoMultiPlayer);
 	botonInstrucciones.addEventListener('click', () => {
 		ventanaModalInstrucciones.style.display = "flex";
@@ -291,4 +306,5 @@ async function mostrarOpcionesDeJuego() {
 	cerrarVentanaModal.addEventListener('click', () => ventanaModalInstrucciones.style.display = "none");
 }
 
+botonPlay.addEventListener('click', () => transition.play());
 botonPlay.addEventListener('click', mostrarOpcionesDeJuego);
