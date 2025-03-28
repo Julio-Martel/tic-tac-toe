@@ -116,9 +116,7 @@
 	gap: 5px;
 }
 
-
 .tablero {
-	background: #000000;
 	display: grid;
 	width: 100%;
 	height: 100%;
@@ -135,12 +133,27 @@
 }
 
 .casilla {
+	background: #000000;
 	width: 100%;
 	border: solid 1px darkgrey;
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+
+.ventana-modal-menu {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;	
+	width: 100%;
+	height: 100%;
+	backdrop-filter: blur(10px);
+	flex-direction: column;
 }
 
 .ventana-modal {
@@ -165,6 +178,26 @@
     cursor: pointer;
 }
 
+#boton-cerrar-menu {
+	right: 50px;
+}
+
+.navegador-principal-vertical {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.navegador-principal-vertical ul {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+
+.navegador-principal-vertical ul li {
+	text-align: center;
+}
+
 #ventana-instrucciones {
 	font-family: "Tektur", sans-serif;
 	width: 30%;
@@ -187,7 +220,6 @@
 .lista-ordenada {
 	list-style: none;
 }
-
 
 .simbolo {
 	color: #ffffff;
@@ -223,7 +255,6 @@
 	display: flex;
 	flex-direction: column-reverse;
 }
-
 
 .tamaño-icono {
 	width: 50px;
