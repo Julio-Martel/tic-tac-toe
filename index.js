@@ -304,8 +304,7 @@ async function mostrarOpcionesDeJuego() {
 		ventanaModalInstrucciones.classList.add('mostrar-modal');
 	});
 
-	cerrarVentanaModal.addEventListener('click', () => ventanaModalInstrucciones.style.display = "none");
-}
+	cerrarVentanaModal.addEventListener('click', () => ventanaModalInstrucciones.style.display = "none");}
 
 botonPlay.addEventListener('click', () => transition.play());
 botonPlay.addEventListener('click', mostrarOpcionesDeJuego);
