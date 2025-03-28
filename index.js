@@ -102,6 +102,7 @@ async function generarJuegoMultiPlayer() {
 		const ganaElJugador1 = "Gana el jugador 1";
 		const ganaElJugador2 = "Gana el jugador 2";
 		const empate = "Empate!"
+		const partidaEmpatada = false;
 
 		casilla.addEventListener('click', async () => {
 			if (playerNumber === 1) {
@@ -119,6 +120,7 @@ async function generarJuegoMultiPlayer() {
 
 				tablaCasillas[valorX][valorY] = "x";
 				contadorDeCasillasOcupadas++;
+				console.log(contadorDeCasillasOcupadas)
 				playerNumber++;	
 
 				if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {			
@@ -169,11 +171,11 @@ async function generarJuegoMultiPlayer() {
 					const coordenada24 = "2-0";
 					generarBrillo(coordenada22,coordenada23,coordenada24);						
 					generarVentanaModal(ganaElJugador1);
-				} 
-				
-				if (contadorDeCasillasOcupadas === 9) {
+				} else if(contadorDeCasillasOcupadas === 9) {
 					generarVentanaModal(empate);
+
 				}
+		
 
 			} else {
 				
@@ -189,6 +191,7 @@ async function generarJuegoMultiPlayer() {
 				const valorY = arregloCoordenadas[1];
 				tablaCasillas[valorX][valorY] = "o";
 				contadorDeCasillasOcupadas++;
+				console.log(contadorDeCasillasOcupadas)
 				playerNumber = 1;					
 			
 				if (tablaCasillas[0][0] === "o" && tablaCasillas[0][1] === "o" && tablaCasillas[0][2] === "o") {			
@@ -239,14 +242,12 @@ async function generarJuegoMultiPlayer() {
 					const coordenada24 = "2-0";
 					generarBrillo(coordenada22,coordenada23,coordenada24);						
 					generarVentanaModal(ganaElJugador2);
-				} 
-
-				// PENSAR UNA CONDICIONAL EN LA QUE SI POR EJEMPLO PARA COMPLETAR EL TABLERO NOS QUEDA UNA SOLA FILA O COLUMNA, ESTA SOLO MUESTRA EL CARTEL DE VICTORIA Y NO DE EMPATE
-
-				if (contadorDeCasillasOcupadas === 9) {
+				} else if(contadorDeCasillasOcupadas === 9) {
 					generarVentanaModal(empate);
+
 				}
 
+				
 			}
 
 		});
