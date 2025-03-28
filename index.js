@@ -7,6 +7,10 @@ const win = new Audio('audios/win.mp3');
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+async function generarJuegoSinglePlayer(argument) {
+	// agregar todo el codigo aqui
+}
+
 async function generarJuegoMultiPlayer() {
 	contenidoPrincipal.innerHTML = `
 		<div class="tablero">
@@ -297,6 +301,8 @@ async function mostrarOpcionesDeJuego() {
 	
 	contenidoOpciones.classList.add('mostrar-contenido-opciones');
 
+	botonSinglePlayer.addEventListener('click', () => transition.play());
+	botonSinglePlayer.addEventListener('click', generarJuegoSinglePlayer);
 	botonMultiPlayer.addEventListener('click', () => transition.play());
 	botonMultiPlayer.addEventListener('click', generarJuegoMultiPlayer);
 	botonInstrucciones.addEventListener('click', () => {
