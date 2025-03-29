@@ -4,6 +4,19 @@ const contenidoPrincipal = document.querySelector('.contenido-principal');
 const tituloPrincipal = document.querySelector('.titulo-principal');
 const transition = new Audio('audios/transition.mp3');
 const win = new Audio('audios/win.mp3');
+const iconoMenu = document.querySelector('.icono-menu');
+const ventananaModalMenu = document.querySelector('.ventana-modal-menu');
+const botonCerrarModalMenu = document.getElementById('boton-cerrar-menu');
+
+
+
+iconoMenu.addEventListener('click', () => {
+	ventananaModalMenu.style.display = "flex";
+});
+
+botonCerrarModalMenu.addEventListener('click', () => {
+	ventananaModalMenu.style.display = "none";
+});
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
