@@ -8,8 +8,6 @@ const iconoMenu = document.querySelector('.icono-menu');
 const ventananaModalMenu = document.querySelector('.ventana-modal-menu');
 const botonCerrarModalMenu = document.getElementById('boton-cerrar-menu');
 
-
-
 iconoMenu.addEventListener('click', () => {
 	ventananaModalMenu.style.display = "flex";
 });
@@ -137,7 +135,6 @@ async function generarJuegoMultiPlayer() {
 
 				tablaCasillas[valorX][valorY] = "x";
 				contadorDeCasillasOcupadas++;
-				console.log(contadorDeCasillasOcupadas)
 				playerNumber++;	
 
 				if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {			
@@ -208,7 +205,6 @@ async function generarJuegoMultiPlayer() {
 				const valorY = arregloCoordenadas[1];
 				tablaCasillas[valorX][valorY] = "o";
 				contadorDeCasillasOcupadas++;
-				console.log(contadorDeCasillasOcupadas)
 				playerNumber = 1;					
 			
 				if (tablaCasillas[0][0] === "o" && tablaCasillas[0][1] === "o" && tablaCasillas[0][2] === "o") {			
