@@ -6,7 +6,7 @@
 }
 
 .cuerpo-principal {
-	background: linear-gradient(darkred, darkorange);
+	background: url('images/fondo1.jpg');
 	background-size: cover;
 	height: 100vh;
 	display: flex;
@@ -14,6 +14,7 @@
 }
 
 .encabezado-principal {
+	background: rgba(0, 0, 0, 0.6);
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -25,6 +26,11 @@
 	margin-left: 15px;
 	font-size: 3rem;
 	font-family: "Tektur", sans-serif;
+	text-shadow: 	
+	  -2px -2px 0 #000,  
+	   1px -1px 0 #000,
+	  -1px  1px 0 #000,
+	   1px  1px 0 #000;
 }
 
 .navegador-principal {
@@ -41,6 +47,11 @@
 	color: #ffffff;
 	font-family: "Tektur", sans-serif;
 	cursor: pointer;
+	text-shadow: 	
+	  -2px -2px 0 #000,  
+	   1px -1px 0 #000,
+	  -1px  1px 0 #000,
+	   1px  1px 0 #000;
 }
 
 .contenido-principal {
@@ -66,6 +77,8 @@
 .imagen-logo {
 	width: 100%;
 	height: 500px;
+	border: solid 1px darkgrey;
+	border-radius: 20px;
 }
 
 .contenedor-botones {
@@ -81,11 +94,11 @@
 	color: #ffffff;
 	padding: 5px;
 	border: solid 1px darkgrey;
-	border-radius: 3px;
 	cursor: pointer;
 	transition: background 0.3s linear;
 	padding: 10px;
 	font-size: 2rem;
+	border-radius: 20px;
 }
 
 .boton:hover {
@@ -94,7 +107,7 @@
 }
 
 .contenido-opciones {
-	background: darkred;
+	background: rgba(0, 0, 0, 0.6);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -126,6 +139,7 @@
 	grid-template-columns: repeat(3, 1fr);
 	opacity: 0;
 	transition: opacity 1s ease;
+	grid-gap: 10px;
 }
 
 .mostrar-tablero {
@@ -135,13 +149,13 @@
 .casilla {
 	background: #000000;
 	width: 100%;
-	border: solid 1px darkgrey;
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	border-radius: 10px;
+	border: solid 1px darkgrey;
 }
-
 
 .ventana-modal-menu {
 	display: none;
@@ -152,7 +166,7 @@
 	left: 0;	
 	width: 100%;
 	height: 100%;
-	backdrop-filter: blur(10px);
+	backdrop-filter: brightness(0.1);
 	flex-direction: column;
 }
 
@@ -180,6 +194,11 @@
 
 #boton-cerrar-menu {
 	right: 50px;
+	text-shadow: 	
+	-2px -2px 0 #000,  
+	1px -1px 0 #000,
+	-1px  1px 0 #000,
+	1px  1px 0 #000;
 }
 
 .navegador-principal-vertical {
@@ -196,6 +215,27 @@
 
 .navegador-principal-vertical ul li {
 	text-align: center;
+	color: #ffffff;
+	font-family: "Tektur", sans-serif;
+	cursor: pointer;
+	font-size: 2rem;
+	text-shadow: 	
+	-2px -2px 0 #000,  
+	1px -1px 0 #000,
+	-1px  1px 0 #000,
+	1px  1px 0 #000;	
+}
+
+.titulo-menu {
+	color: #ffffff;
+	font-family: "Tektur", sans-serif;
+	cursor: pointer;
+	font-size: 3rem;	
+	text-shadow: 	
+	-2px -2px 0 #000,  
+	1px -1px 0 #000,
+	-1px  1px 0 #000,
+	1px  1px 0 #000;
 }
 
 #ventana-instrucciones {
@@ -302,6 +342,10 @@
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
+	.cuerpo-principal {
+		background-position-x: 50%;
+	}
+
 	.encabezado-principal {
 		background: #000000;
 	}
@@ -343,8 +387,6 @@
 	}
 
 	.contenido-opciones {
-		background: url('images/opcionesImage.jpg');
-		background-size: cover;
 		background-position-x: 50%;
 		display: flex;
 		justify-content: center;
