@@ -18,8 +18,52 @@ botonCerrarModalMenu.addEventListener('click', () => {
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-async function generarJuegoSinglePlayer(argument) {
-	// agregar todo el codigo aqui
+async function generarJuegoSinglePlayer() {
+	contenidoPrincipal.innerHTML = `
+		<div class="tablero">
+			<div class="casilla" id="0-0" data-value = "0-0"></div>
+			<div class="casilla" id="0-1" data-value = "0-1"></div>
+			<div class="casilla" id="0-2" data-value = "0-2"></div>
+			<div class="casilla" id="1-0" data-value = "1-0"></div>
+			<div class="casilla" id="1-1" data-value = "1-1"></div>
+			<div class="casilla" id="1-2" data-value = "1-2"></div>
+			<div class="casilla" id="2-0" data-value = "2-0"></div>
+			<div class="casilla" id="2-1" data-value = "2-1"></div>
+			<div class="casilla" id="2-2" data-value = "2-2"></div>
+		</div>
+
+		<div class="ventana-modal" id="ventana-modal-1">
+			<div class="contenido-modal" id="contenido-victoria">
+				<div class="contenedor-botones-final">
+					<button class="boton-nuevo" id="reiniciar-partida">Restart game</button>
+					<button class="boton-nuevo" id="regresar-menu">Main Menu</button>				
+				</div>			
+			</div>
+		</div>
+	`;		
+	
+	await delay(500);
+	
+	const tableroJuego = document.querySelector('.tablero');
+	tableroJuego.classList.add('mostrar-tablero');
+	const tablaCasillas = [[0,0,0],
+						   [0,0,0],
+						   [0,0,0]];
+
+    const reiniciarJuego = document.getElementById('reiniciar-partida');
+    const volverAlMenu = document.getElementById('regresar-menu');
+
+   	reiniciarJuego.addEventListener('click', generarJuegoMultiPlayer);
+   	reiniciarJuego.addEventListener('click', () => transition.play());
+   	volverAlMenu.addEventListener('click', mostrarOpcionesDeJuego);
+   	volverAlMenu.addEventListener('click', () => transition.play());
+
+	const casillas = document.querySelectorAll('.casilla');
+
+	let playerNumber = 1;
+	for(let casilla of casillas) {
+
+	}
 }
 
 async function generarJuegoMultiPlayer() {
@@ -68,7 +112,6 @@ async function generarJuegoMultiPlayer() {
 		const ventanaModalVictoria = document.getElementById('ventana-modal-1');
 		const contenidoModalVictoria = document.getElementById('contenido-victoria');
 		const textoResultado = document.createElement("h2");
-
 		
 		casillas.forEach(casilla => casilla.style.pointerEvents = "none");
 
@@ -79,8 +122,7 @@ async function generarJuegoMultiPlayer() {
 		ventanaModalVictoria.style.display = "flex";
 		contenidoModalVictoria.appendChild(textoResultado);
 
-		return;	
-	}
+		return;	}
 
 	async function generarBrillo(coord1,coord2,coord3) {
 		const brillar1 = document.getElementById(coord1);
@@ -102,9 +144,7 @@ async function generarJuegoMultiPlayer() {
 
 		icono1.classList.remove('ejecutar-animacion');
 		icono2.classList.remove('ejecutar-animacion');
-		icono3.classList.remove('ejecutar-animacion');
-
-	}
+		icono3.classList.remove('ejecutar-animacion');}
 
 	const casillas = document.querySelectorAll('.casilla');
 	let playerNumber = 1;
