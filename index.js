@@ -19,22 +19,21 @@ botonCerrarModalMenu.addEventListener('click', () => {
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-const asignarCasillaDeFormaAutomatica = () => {
-	return new Promise(resolve => {
-		const iconoO = document.createElement("img");
-		const generarValorEjeX = Math.floor(Math.random() * 3);
-		const generarValorEjeY = Math.floor(Math.random() * 3);
-		const casillaCoordenadas = `${generarValorEjeX}-${generarValorEjeY}`;
-		const casillaDataValue = casillaCoordenadas;
+async function asignarCasillaDeFormaAutomatica() {
+	const iconoO = document.createElement("img");
+	const generarValorEjeX = Math.floor(Math.random() * 3);
+	const generarValorEjeY = Math.floor(Math.random() * 3);
+	const casillaCoordenadas = `${generarValorEjeX}-${generarValorEjeY}`;
+	const casillaDataValue = casillaCoordenadas;
 
-		const casillaId = document.getElementById(casillaDataValue);
+	const casillaId = document.getElementById(casillaDataValue);
 
 		// pensar la forma en la que si la casilla esta ocupada, que busque otra para ubicar y dar la asignacion
 
-	});
 }
 
-async function generarJuegoSinglePlayer() {
+async function generarJue
+goSinglePlayer() {
 	contenidoPrincipal.innerHTML = `
 		<div class="tablero">
 			<div class="casilla" id="0-0" data-value = "0-0"></div>
@@ -155,7 +154,7 @@ async function generarJuegoSinglePlayer() {
 			} else if(contadorDeCasillasOcupadas === 9) {
 					generarVentanaModal(empate);}
 	
-			await asignarCasillaDeFormaAutomatica();
+			asignarCasillaDeFormaAutomatica();
 
 		})
 	}
