@@ -7,6 +7,7 @@ const win = new Audio('audios/win.mp3');
 const iconoMenu = document.querySelector('.icono-menu');
 const ventananaModalMenu = document.querySelector('.ventana-modal-menu');
 const botonCerrarModalMenu = document.getElementById('boton-cerrar-menu');
+const casillasOcupadas = [];
 
 iconoMenu.addEventListener('click', () => {
 	ventananaModalMenu.style.display = "flex";
@@ -17,6 +18,21 @@ botonCerrarModalMenu.addEventListener('click', () => {
 });
 
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+const asignarCasillaDeFormaAutomatica = () => {
+	return new Promise(resolve => {
+		const iconoO = document.createElement("img");
+		const generarValorEjeX = Math.floor(Math.random() * 3);
+		const generarValorEjeY = Math.floor(Math.random() * 3);
+		const casillaCoordenadas = `${generarValorEjeX}-${generarValorEjeY}`;
+		const casillaDataValue = casillaCoordenadas;
+
+		const casillaId = document.getElementById(casillaDataValue);
+
+		// pensar la forma en la que si la casilla esta ocupada, que busque otra para ubicar y dar la asignacion
+
+	});
+}
 
 async function generarJuegoSinglePlayer() {
 	contenidoPrincipal.innerHTML = `
@@ -61,8 +77,87 @@ async function generarJuegoSinglePlayer() {
 	const casillas = document.querySelectorAll('.casilla');
 
 	let playerNumber = 1;
+	let contadorDeCasillasOcupadas = 0;		
 	for(let casilla of casillas) {
+		const casillaValue = casilla.getAttribute('data-value'); 
+		const casillaId = document.getElementById(casillaValue);
+		const arregloCoordenadas = casillaValue.split('-');
+		const ganaElJugador1 = "Gana el jugador 1";
+		const ganaLaMaquina = "Gana la maquina";
+		const empate = "Empate!"
+		const partidaEmpatada = false;		
+	
+		casilla.addEventListener('click', async () => {
+			const iconoX = document.createElement("img");
+			casillasOcupadas.push(casillaId);
+			casillaId.appendChild(iconoX);
+			iconoX.src = "images/Tc-X-min.png";
+			iconoX.classList.add('tamaño-icono');
+			await delay(50);
+			iconoX.classList.add('mostrar-icono');
+			casillaId.style.pointerEvents = "none";			
+				
+			const valorX = arregloCoordenadas[0];
+			const valorY = arregloCoordenadas[1];
 
+			tablaCasillas[valorX][valorY] = "x";
+			contadorDeCasillasOcupadas++;
+			playerNumber++;	
+
+			if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {			
+					const coordenada1 = "0-0";
+					const coordenada2 = "0-1";
+					const coordenada3 = "0-2";
+					generarBrillo(coordenada1,coordenada2,coordenada3);
+					generarVentanaModal(ganaElJugador1);		
+			} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
+					const coordenada4 = "1-0";
+					const coordenada5 = "1-1";
+					const coordenada6 = "1-2";
+					generarBrillo(coordenada4,coordenada5,coordenada6);				
+					generarVentanaModal(ganaElJugador1);
+			} else if (tablaCasillas[2][0] === "x" && tablaCasillas[2][1] === "x" && tablaCasillas[2][2] === "x") {
+					const coordenada7 = "2-0";
+					const coordenada8 = "2-1";
+					const coordenada9 = "2-2";
+					generarBrillo(coordenada7,coordenada8,coordenada9);						
+					generarVentanaModal(ganaElJugador1);			
+			} else if (tablaCasillas[0][0] === "x" && tablaCasillas[1][0] === "x" && tablaCasillas[2][0] === "x") {
+					const coordenada10 = "0-0";
+					const coordenada11 = "1-0";
+					const coordenada12 = "2-0";
+					generarBrillo(coordenada10,coordenada11,coordenada12);						
+					generarVentanaModal(ganaElJugador1);
+			} else if (tablaCasillas[0][1] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][1] === "x") {
+					const coordenada13 = "0-1";
+					const coordenada14 = "1-1";
+					const coordenada15 = "2-1";
+					generarBrillo(coordenada13,coordenada14,coordenada15);							
+					generarVentanaModal(ganaElJugador1);
+			} else if (tablaCasillas[0][2] === "x" && tablaCasillas[1][2] === "x" && tablaCasillas[2][2] === "x") {
+					const coordenada16 = "0-2";
+					const coordenada17 = "1-2";
+					const coordenada18 = "2-2";
+					generarBrillo(coordenada16,coordenada17,coordenada18);							
+					generarVentanaModal(ganaElJugador1);		
+			} else if (tablaCasillas[0][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][2] === "x") {
+					const coordenada19 = "0-0";
+					const coordenada20 = "1-1";
+					const coordenada21 = "2-2";
+					generarBrillo(coordenada19,coordenada20,coordenada21);						
+					generarVentanaModal(ganaElJugador1);
+			} else if (tablaCasillas[0][2] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][0] === "x") {
+					const coordenada22 = "0-2";
+					const coordenada23 = "1-1";
+					const coordenada24 = "2-0";
+					generarBrillo(coordenada22,coordenada23,coordenada24);						
+					generarVentanaModal(ganaElJugador1);
+			} else if(contadorDeCasillasOcupadas === 9) {
+					generarVentanaModal(empate);}
+	
+			await asignarCasillaDeFormaAutomatica();
+
+		})
 	}
 }
 
