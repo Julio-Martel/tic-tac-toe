@@ -118,7 +118,14 @@ async function asignarCasillaDeFormaAutomatica() {
 
 }
 
+
+//SOLUCIONAR ESTE PROBLEMA PARA LA ASIGNACION DE LA FICHA "O"
+
+
 async function generarJuegoSinglePlayer() {
+	
+	// Se genera el contenido jugable
+
 	contenidoPrincipal.innerHTML = `
 		<div class="tablero">
 			<div class="casilla" id="0-0" data-value = "0-0"></div>
@@ -142,9 +149,14 @@ async function generarJuegoSinglePlayer() {
 		</div>
 	`;		
 	
+	// a la vez que se genera el contenido jugable se aplica un delay
+
 	await delay(500);
 	
 	const tableroJuego = document.querySelector('.tablero');
+
+	// al tablero se le agrega una nueva clase que hara que se muestre el tablero de una forma mas lenta
+
 	tableroJuego.classList.add('mostrar-tablero');
 
     const reiniciarJuego = document.getElementById('reiniciar-partida');
@@ -155,16 +167,17 @@ async function generarJuegoSinglePlayer() {
    	volverAlMenu.addEventListener('click', mostrarOpcionesDeJuego);
    	volverAlMenu.addEventListener('click', () => transition.play());
 
+   	// variable que hace referencia a todo el conjunto de clases "casilla"
+
 	const casillas = document.querySelectorAll('.casilla');
 
-	let playerNumber = 1;
 	let contadorDeCasillasOcupadas = 0;		
 	for(let casilla of casillas) {
 		const casillaValue = casilla.getAttribute('data-value'); 
 		const casillaId = document.getElementById(casillaValue);
 		const arregloCoordenadas = casillaValue.split('-');
-		const ganaElJugador1 = "Gana el jugador 1";
-		const ganaLaMaquina = "Gana la maquina";
+		const ganaElJugador1 = "Ganaste";
+		const ganaLaMaquina = "Has perdido";
 		const empate = "Empate!"
 		const partidaEmpatada = false;		
 	
@@ -172,9 +185,12 @@ async function generarJuegoSinglePlayer() {
 			const iconoX = document.createElement("img");
 			casillasOcupadas.push(casillaId);
 			casillaId.appendChild(iconoX);
+			
 			iconoX.src = "images/Tc-X-min.png";
 			iconoX.classList.add('tamaño-icono');
+			
 			await delay(50);
+			
 			iconoX.classList.add('mostrar-icono');
 			casillaId.style.pointerEvents = "none";			
 				
@@ -183,7 +199,6 @@ async function generarJuegoSinglePlayer() {
 
 			tablaCasillas[valorX][valorY] = "x";
 			contadorDeCasillasOcupadas++;
-			playerNumber++;	
 
 			if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {			
 					const coordenada1 = "0-0";
@@ -236,6 +251,8 @@ async function generarJuegoSinglePlayer() {
 			} else if(contadorDeCasillasOcupadas === 9) {
 					generarVentanaModal(empate);}
 	
+			await delay(50);
+			
 			asignarCasillaDeFormaAutomatica();
 
 		})
