@@ -9,6 +9,10 @@ const ventananaModalMenu = document.querySelector('.ventana-modal-menu');
 const botonCerrarModalMenu = document.getElementById('boton-cerrar-menu');
 const casillasOcupadas = [];
 
+const tablaCasillas = [[0,0,0],
+					   [0,0,0],
+					   [0,0,0]];
+
 iconoMenu.addEventListener('click', () => {
 	ventananaModalMenu.style.display = "flex";
 });
@@ -21,19 +25,100 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function asignarCasillaDeFormaAutomatica() {
 	const iconoO = document.createElement("img");
-	const generarValorEjeX = Math.floor(Math.random() * 3);
-	const generarValorEjeY = Math.floor(Math.random() * 3);
-	const casillaCoordenadas = `${generarValorEjeX}-${generarValorEjeY}`;
-	const casillaDataValue = casillaCoordenadas;
+	let contadorDeCasillasOcupadas = 0;
 
-	const casillaId = document.getElementById(casillaDataValue);
+	let casillaExistente;
+	let casillaId;
+	do {
+	    const generarValorEjeX = Math.floor(Math.random() * 3);
+	    const generarValorEjeY = Math.floor(Math.random() * 3);
+	    const casillaCoordenadas = `${generarValorEjeX}-${generarValorEjeY}`;
+	    casillaId = document.getElementById(casillaCoordenadas);
 
-		// pensar la forma en la que si la casilla esta ocupada, que busque otra para ubicar y dar la asignacion
+	    // Asegurarse de que la casilla existe en el DOM antes de verificar
+	    casillaExistente = casillaId && casillasOcupadas.includes(casillaCoordenadas);
+
+	    if (!casillaExistente && casillaId) {
+	        casillasOcupadas.push(casillaCoordenadas);
+	    }
+	} while (casillaExistente);
+
+	casillaId.appendChild(iconoO);
+	iconoO.src = "images/Tc-X-min.png";
+	iconoO.classList.add('tamaño-icono');	
+
+	await delay(50);
+	
+	iconoO.classList.add('mostrar-icono');
+	casillaId.style.pointerEvents = "none";		
+
+	const casillaValue = casillaId.getAttribute('data-value');
+	const arregloCoordenadas = casillaValue.split('-'); // arreglar esto
+
+	const valorX = arregloCoordenadas[0];
+	const valorY = arregloCoordenadas[1];
+
+	tablaCasillas[valorX][valorY] = "o";
+
+	contadorDeCasillasOcupadas++;
+
+	if (tablaCasillas[0][0] === "o" && tablaCasillas[0][1] === "o" && tablaCasillas[0][2] === "o") {			
+		const coordenada1 = "0-0";
+		const coordenada2 = "0-1";
+		const coordenada3 = "0-2";
+		generarBrillo(coordenada1,coordenada2,coordenada3);					
+		generarVentanaModal(ganaElJugador2);		
+	} else if (tablaCasillas[1][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[1][2] === "o") {
+		const coordenada4 = "1-0";
+		const coordenada5 = "1-1";
+		const coordenada6 = "1-2";
+		generarBrillo(coordenada4,coordenada5,coordenada6);					
+		generarVentanaModal(ganaElJugador2);
+	} else if (tablaCasillas[2][0] === "o" && tablaCasillas[2][1] === "o" && tablaCasillas[2][2] === "o") {
+		const coordenada7 = "2-0";
+		const coordenada8 = "2-1";
+		const coordenada9 = "2-2";
+		generarBrillo(coordenada7,coordenada8,coordenada9);						
+		generarVentanaModal(ganaElJugador2);			
+	} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][0] === "o" && tablaCasillas[2][0] === "o") {
+		const coordenada10 = "0-0";
+		const coordenada11 = "1-0";
+		const coordenada12 = "2-0";
+		generarBrillo(coordenada10,coordenada11,coordenada12);						
+		generarVentanaModal(ganaElJugador2);
+	} else if (tablaCasillas[0][1] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][1] === "o") {
+		const coordenada13 = "0-1";
+		const coordenada14 = "1-1";
+		const coordenada15 = "2-1";
+		generarBrillo(coordenada13,coordenada14,coordenada15);					
+		generarVentanaModal(ganaElJugador2);
+	} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][2] === "o" && tablaCasillas[2][2] === "o") {
+		const coordenada16 = "0-2";
+		const coordenada17 = "1-2";
+		const coordenada18 = "2-2";
+		generarBrillo(coordenada16,coordenada17,coordenada18);						
+		generarVentanaModal(ganaElJugador2);		
+	} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][2] === "o") {
+		const coordenada19 = "0-0";
+		const coordenada20 = "1-1";
+		const coordenada21 = "2-2";
+		generarBrillo(coordenada19,coordenada20,coordenada21);						
+		generarVentanaModal(ganaElJugador2);
+	} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][0] === "o") {
+		const coordenada22 = "0-2";
+		const coordenada23 = "1-1";
+		const coordenada24 = "2-0";
+		generarBrillo(coordenada22,coordenada23,coordenada24);						
+		generarVentanaModal(ganaElJugador2);
+	} else if(contadorDeCasillasOcupadas === 9) {
+		generarVentanaModal(empate);
+
+	}
+
 
 }
 
-async function generarJue
-goSinglePlayer() {
+async function generarJuegoSinglePlayer() {
 	contenidoPrincipal.innerHTML = `
 		<div class="tablero">
 			<div class="casilla" id="0-0" data-value = "0-0"></div>
@@ -61,9 +146,6 @@ goSinglePlayer() {
 	
 	const tableroJuego = document.querySelector('.tablero');
 	tableroJuego.classList.add('mostrar-tablero');
-	const tablaCasillas = [[0,0,0],
-						   [0,0,0],
-						   [0,0,0]];
 
     const reiniciarJuego = document.getElementById('reiniciar-partida');
     const volverAlMenu = document.getElementById('regresar-menu');
