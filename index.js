@@ -24,12 +24,9 @@ botonCerrarModalMenu.addEventListener('click', () => {
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function asignarCasillaDeFormaAutomatica() {
+	const iconoO = document.createElement("img");
 	
 }
-
-
-//SOLUCIONAR ESTE PROBLEMA PARA LA ASIGNACION DE LA FICHA "O"
-
 
 async function generarJuegoSinglePlayer() {	
 	contenidoPrincipal.innerHTML = `
@@ -158,8 +155,7 @@ async function generarJuegoSinglePlayer() {
 			contadorDeCasillasOcupadas++;
 
 		})
-	}
-}
+	}}
 
 async function generarJuegoMultiPlayer() {
 	contenidoPrincipal.innerHTML = `
