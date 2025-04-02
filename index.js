@@ -9,9 +9,7 @@ const ventananaModalMenu = document.querySelector('.ventana-modal-menu');
 const botonCerrarModalMenu = document.getElementById('boton-cerrar-menu');
 let casillasOcupadas = [];
 
-const tablaCasillas = [[0,0,0],
-					   [0,0,0],
-					   [0,0,0]];
+const tablaCasillas = [[0,0,0],[0,0,0],[0,0,0]];
 
 iconoMenu.addEventListener('click', () => {
 	ventananaModalMenu.style.display = "flex";
@@ -24,161 +22,10 @@ botonCerrarModalMenu.addEventListener('click', () => {
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const reiniciarTablaCasillas = () => {
-	for(let i = 0; i < tablaCasillas[i].length; i++) {
-		for(let j = 0; j < tablaCasillas[j].length; j++) {
+	for(let i = 0; i < tablaCasillas.length; i++) {
+		for(let j = 0; j < tablaCasillas[i].length; j++) {
 			tablaCasillas[i][j] = 0;
 		}
-	}
-}
-
-async function generarVentanaModal(resultado) {
-		const casillas = document.querySelectorAll('.casilla');
-		const ventanaModalVictoria = document.getElementById('ventana-modal-1');
-		const contenidoModalVictoria = document.getElementById('contenido-victoria');
-		const textoResultado = document.createElement("h2");
-		
-		casillas.forEach(casilla => casilla.style.pointerEvents = "none");
-
-		textoResultado.textContent = resultado;
-
-		await delay(2000);
-
-		ventanaModalVictoria.style.display = "flex";
-		contenidoModalVictoria.appendChild(textoResultado);
-
-		return;	}
-
-async function generarBrillo(coord1,coord2,coord3) {
-		const brillar1 = document.getElementById(coord1);
-		const brillar2 = document.getElementById(coord2);
-		const brillar3 = document.getElementById(coord3);
-
-		const icono1 = brillar1.querySelector('.tamaño-icono');
-		icono1.classList.add('ejecutar-animacion');
-		
-		const icono2 = brillar2.querySelector('.tamaño-icono');
-		icono2.classList.add('ejecutar-animacion');
-		
-		const icono3 = brillar3.querySelector('.tamaño-icono');
-		icono3.classList.add('ejecutar-animacion');
-
-		win.play();
-
-		await delay(2000);
-
-		icono1.classList.remove('ejecutar-animacion');
-		icono2.classList.remove('ejecutar-animacion');
-		icono3.classList.remove('ejecutar-animacion');}
-
-async function asignarCasillaDeFormaAutomatica(contadorDeCasillasOcupadas) {
-	const iconoO = document.createElement("img");
-	const ganaLaMaquina = "Has perdido";
-	const empate = "Empate!"
-	let casillaExistente;
-
-	do {
-
-		const valorEjeX = Math.floor(Math.random() * 3);
-		const valorEjeY = Math.floor(Math.random() * 3);
-		const casillaValue = `${valorEjeX}-${valorEjeY}`;
-		const casillaId = document.getElementById(casillaValue);
-
-		casillaExistente = casillasOcupadas.includes(casillaId);
-
-		if (casillaExistente === false) {
-			casillasOcupadas.push(casillaId);
-			casillaExistente = casillaId;
-			break;
-		}
-
-	} while(casillaExistente !== false);
-
-	casillaExistente.appendChild(iconoO);
-
-	iconoO.src = "images/Tc-O-min.png";
-	iconoO.classList.add('tamaño-icono');
-	
-	await delay(50);
-
-	iconoO.classList.add('mostrar-icono');
-	casillaExistente.style.pointerEvents = "none";
-
-	const coordenadasCasilla = casillaExistente.getAttribute('data-value');
-	const arregloCoordenadas = 	coordenadasCasilla.split('-');
-
-	const valorX = arregloCoordenadas[0];
-	const valorY = arregloCoordenadas[1];
-
-	tablaCasillas[valorX][valorY] = "o";
-	contadorDeCasillasOcupadas++;
-
-	if (tablaCasillas[0][0] === "o" && tablaCasillas[0][1] === "o" && tablaCasillas[0][2] === "o") {			
-		const coordenada1 = "0-0";
-		const coordenada2 = "0-1";
-		const coordenada3 = "0-2";
-		generarBrillo(coordenada1,coordenada2,coordenada3);					
-		generarVentanaModal(ganaLaMaquina);	
-		casillasOcupadas = [];	
-		reiniciarTablaCasillas();
-	} else if (tablaCasillas[1][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[1][2] === "o") {
-		const coordenada4 = "1-0";
-		const coordenada5 = "1-1";
-		const coordenada6 = "1-2";
-		generarBrillo(coordenada4,coordenada5,coordenada6);					
-		generarVentanaModal(ganaLaMaquina);
-		casillasOcupadas = [];
-		reiniciarTablaCasillas();
-	} else if (tablaCasillas[2][0] === "o" && tablaCasillas[2][1] === "o" && tablaCasillas[2][2] === "o") {
-		const coordenada7 = "2-0";
-		const coordenada8 = "2-1";
-		const coordenada9 = "2-2";
-		generarBrillo(coordenada7,coordenada8,coordenada9);						
-		generarVentanaModal(ganaLaMaquina);	
-		casillasOcupadas = [];		
-		reiniciarTablaCasillas();
-	} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][0] === "o" && tablaCasillas[2][0] === "o") {
-		const coordenada10 = "0-0";
-		const coordenada11 = "1-0";
-		const coordenada12 = "2-0";
-		generarBrillo(coordenada10,coordenada11,coordenada12);						
-		generarVentanaModal(ganaLaMaquina);
-		casillasOcupadas = [];
-		reiniciarTablaCasillas();
-	} else if (tablaCasillas[0][1] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][1] === "o") {
-		const coordenada13 = "0-1";
-		const coordenada14 = "1-1";
-		const coordenada15 = "2-1";
-		generarBrillo(coordenada13,coordenada14,coordenada15);					
-		generarVentanaModal(ganaLaMaquina);
-		casillasOcupadas = [];
-		reiniciarTablaCasillas();
-	} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][2] === "o" && tablaCasillas[2][2] === "o") {
-		const coordenada16 = "0-2";
-		const coordenada17 = "1-2";
-		const coordenada18 = "2-2";
-		generarBrillo(coordenada16,coordenada17,coordenada18);						
-		generarVentanaModal(ganaLaMaquina);	
-		casillasOcupadas = [];	
-	} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][2] === "o") {
-		const coordenada19 = "0-0";
-		const coordenada20 = "1-1";
-		const coordenada21 = "2-2";
-		generarBrillo(coordenada19,coordenada20,coordenada21);						
-		generarVentanaModal(ganaLaMaquina);
-		casillasOcupadas = [];
-		reiniciarTablaCasillas();
-	} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][0] === "o") {
-		const coordenada22 = "0-2";
-	    const coordenada23 = "1-1";
-		const coordenada24 = "2-0";
-		generarBrillo(coordenada22,coordenada23,coordenada24);						
-		generarVentanaModal(ganaLaMaquina);
-		casillasOcupadas = [];
-		reiniciarTablaCasillas();
-	} else if(contadorDeCasillasOcupadas === 9) {
-		generarVentanaModal(empate);
-		casillasOcupadas = [];
-		reiniciarTablaCasillas();
 	}}
 
 async function generarJuegoSinglePlayer() {	
@@ -525,6 +372,156 @@ async function generarJuegoMultiPlayer() {
 
 		i++;
 	}} 
+
+async function generarVentanaModal(resultado) {
+		const casillas = document.querySelectorAll('.casilla');
+		const ventanaModalVictoria = document.getElementById('ventana-modal-1');
+		const contenidoModalVictoria = document.getElementById('contenido-victoria');
+		const textoResultado = document.createElement("h2");
+		
+		casillas.forEach(casilla => casilla.style.pointerEvents = "none");
+
+		textoResultado.textContent = resultado;
+
+		await delay(2000);
+
+		ventanaModalVictoria.style.display = "flex";
+		contenidoModalVictoria.appendChild(textoResultado);
+
+		return;	}
+
+async function generarBrillo(coord1,coord2,coord3) {
+		const brillar1 = document.getElementById(coord1);
+		const brillar2 = document.getElementById(coord2);
+		const brillar3 = document.getElementById(coord3);
+
+		const icono1 = brillar1.querySelector('.tamaño-icono');
+		icono1.classList.add('ejecutar-animacion');
+		
+		const icono2 = brillar2.querySelector('.tamaño-icono');
+		icono2.classList.add('ejecutar-animacion');
+		
+		const icono3 = brillar3.querySelector('.tamaño-icono');
+		icono3.classList.add('ejecutar-animacion');
+
+		win.play();
+
+		await delay(2000);
+
+		icono1.classList.remove('ejecutar-animacion');
+		icono2.classList.remove('ejecutar-animacion');
+		icono3.classList.remove('ejecutar-animacion');}
+
+async function asignarCasillaDeFormaAutomatica(contadorDeCasillasOcupadas) {
+	const iconoO = document.createElement("img");
+	const ganaLaMaquina = "Has perdido";
+	const empate = "Empate!"
+	let casillaExistente;
+
+	do {
+
+		const valorEjeX = Math.floor(Math.random() * 3);
+		const valorEjeY = Math.floor(Math.random() * 3);
+		const casillaValue = `${valorEjeX}-${valorEjeY}`;
+		const casillaId = document.getElementById(casillaValue);
+
+		casillaExistente = casillasOcupadas.includes(casillaId);
+
+		if (casillaExistente === false) {
+			casillasOcupadas.push(casillaId);
+			casillaExistente = casillaId;
+			break;
+		}
+
+	} while(casillaExistente !== false);
+
+	casillaExistente.appendChild(iconoO);
+
+	iconoO.src = "images/Tc-O-min.png";
+	iconoO.classList.add('tamaño-icono');
+	
+	await delay(50);
+
+	iconoO.classList.add('mostrar-icono');
+	casillaExistente.style.pointerEvents = "none";
+
+	const coordenadasCasilla = casillaExistente.getAttribute('data-value');
+	const arregloCoordenadas = 	coordenadasCasilla.split('-');
+
+	const valorX = arregloCoordenadas[0];
+	const valorY = arregloCoordenadas[1];
+
+	tablaCasillas[valorX][valorY] = "o";
+	contadorDeCasillasOcupadas++;
+
+	if (tablaCasillas[0][0] === "o" && tablaCasillas[0][1] === "o" && tablaCasillas[0][2] === "o") {			
+		const coordenada1 = "0-0";
+		const coordenada2 = "0-1";
+		const coordenada3 = "0-2";
+		generarBrillo(coordenada1,coordenada2,coordenada3);					
+		generarVentanaModal(ganaLaMaquina);	
+		casillasOcupadas = [];	
+		reiniciarTablaCasillas();
+	} else if (tablaCasillas[1][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[1][2] === "o") {
+		const coordenada4 = "1-0";
+		const coordenada5 = "1-1";
+		const coordenada6 = "1-2";
+		generarBrillo(coordenada4,coordenada5,coordenada6);					
+		generarVentanaModal(ganaLaMaquina);
+		casillasOcupadas = [];
+		reiniciarTablaCasillas();
+	} else if (tablaCasillas[2][0] === "o" && tablaCasillas[2][1] === "o" && tablaCasillas[2][2] === "o") {
+		const coordenada7 = "2-0";
+		const coordenada8 = "2-1";
+		const coordenada9 = "2-2";
+		generarBrillo(coordenada7,coordenada8,coordenada9);						
+		generarVentanaModal(ganaLaMaquina);	
+		casillasOcupadas = [];		
+		reiniciarTablaCasillas();
+	} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][0] === "o" && tablaCasillas[2][0] === "o") {
+		const coordenada10 = "0-0";
+		const coordenada11 = "1-0";
+		const coordenada12 = "2-0";
+		generarBrillo(coordenada10,coordenada11,coordenada12);						
+		generarVentanaModal(ganaLaMaquina);
+		casillasOcupadas = [];
+		reiniciarTablaCasillas();
+	} else if (tablaCasillas[0][1] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][1] === "o") {
+		const coordenada13 = "0-1";
+		const coordenada14 = "1-1";
+		const coordenada15 = "2-1";
+		generarBrillo(coordenada13,coordenada14,coordenada15);					
+		generarVentanaModal(ganaLaMaquina);
+		casillasOcupadas = [];
+		reiniciarTablaCasillas();
+	} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][2] === "o" && tablaCasillas[2][2] === "o") {
+		const coordenada16 = "0-2";
+		const coordenada17 = "1-2";
+		const coordenada18 = "2-2";
+		generarBrillo(coordenada16,coordenada17,coordenada18);						
+		generarVentanaModal(ganaLaMaquina);	
+		casillasOcupadas = [];	
+	} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][2] === "o") {
+		const coordenada19 = "0-0";
+		const coordenada20 = "1-1";
+		const coordenada21 = "2-2";
+		generarBrillo(coordenada19,coordenada20,coordenada21);						
+		generarVentanaModal(ganaLaMaquina);
+		casillasOcupadas = [];
+		reiniciarTablaCasillas();
+	} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][0] === "o") {
+		const coordenada22 = "0-2";
+	    const coordenada23 = "1-1";
+		const coordenada24 = "2-0";
+		generarBrillo(coordenada22,coordenada23,coordenada24);						
+		generarVentanaModal(ganaLaMaquina);
+		casillasOcupadas = [];
+		reiniciarTablaCasillas();
+	} else if(contadorDeCasillasOcupadas === 9) {
+		generarVentanaModal(empate);
+		casillasOcupadas = [];
+		reiniciarTablaCasillas();
+	}}
 
 async function mostrarOpcionesDeJuego() {
 	
