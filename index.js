@@ -52,9 +52,17 @@ async function generarJuegoSinglePlayer() {
 		</div>
 	`;		
 	
+	const casillas = document.querySelectorAll('.casilla');
+
+	casillas.forEach(casilla => {
+		casilla.style.pointerEvents = "none";
+	})
+
 	await delay(500);
 	
 	const tableroJuego = document.querySelector('.tablero');
+
+
 
 	tableroJuego.classList.add('mostrar-tablero');
 
@@ -66,7 +74,9 @@ async function generarJuegoSinglePlayer() {
    	volverAlMenu.addEventListener('click', mostrarOpcionesDeJuego);
    	volverAlMenu.addEventListener('click', () => transition.play());
 
-	const casillas = document.querySelectorAll('.casilla');
+	casillas.forEach(casilla => {
+		casilla.style.pointerEvents = "auto";
+	})
 
 	let contadorDeCasillasOcupadas = 0;		
 	for(let casilla of casillas) {
@@ -295,7 +305,6 @@ async function generarJuegoMultiPlayer() {
 
 				}
 		
-
 			} else {
 				
 				const iconoO = document.createElement("img");
@@ -363,9 +372,7 @@ async function generarJuegoMultiPlayer() {
 				} else if(contadorDeCasillasOcupadas === 9) {
 					generarVentanaModal(empate);
 
-				}
-
-				
+				}				
 			}
 
 		});
