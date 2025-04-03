@@ -62,8 +62,6 @@ async function generarJuegoSinglePlayer() {
 	
 	const tableroJuego = document.querySelector('.tablero');
 
-
-
 	tableroJuego.classList.add('mostrar-tablero');
 
     const reiniciarJuego = document.getElementById('reiniciar-partida');
@@ -174,7 +172,7 @@ async function generarJuegoSinglePlayer() {
 					casillasOcupadas = [];
 					reiniciarTablaCasillas();}
 	
-			await delay(2000);
+			await delay(1000);
 
 			asignarCasillaDeFormaAutomatica(contadorDeCasillasOcupadas);
 		})
