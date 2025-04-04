@@ -1,3 +1,5 @@
+// TERMINAR ANTES DEL NUEVO INICIO DE SEMANA
+
 const botonPlay = document.getElementById('play-boton');
 const pantallaInicial = document.querySelector('.pantalla-inicial');
 const contenidoPrincipal = document.querySelector('.contenido-principal');
