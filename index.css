@@ -54,6 +54,11 @@
 	   1px  1px 0 #000;
 }
 
+a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
 .contenido-principal {
 	display: flex;
 	flex: 1;
@@ -107,7 +112,9 @@
 }
 
 .contenido-opciones {
-	background: rgba(0, 0, 0, 0.6);
+	background: url('images/mainImagen2.png');
+	background-size: cover;
+	background-position-y: 80%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -347,7 +354,7 @@
 	}
 
 	.encabezado-principal {
-		background: #000000;
+		background: rgba(0, 0, 0, 0.6);
 	}
 
 	.titulo-principal {
@@ -367,7 +374,7 @@
 	.imagen-logo {
 		display: none;
 	}
-
+	
 	.main-image {
 		display: flex;
 		width: 90%;
@@ -446,5 +453,11 @@
 
 	.contenedor-botones-final {
 		width: 90%;
+	}
+
+
+	#ventana-instrucciones {
+		width: 80%;
+		padding: 2%;
 	}
 }
