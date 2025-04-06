@@ -60,7 +60,7 @@ async function generarJuegoSinglePlayer() {
 		casilla.style.pointerEvents = "none";
 	})
 
-	await delay(500);
+	await delay(600);
 	
 	const tableroJuego = document.querySelector('.tablero');
 
@@ -99,7 +99,9 @@ async function generarJuegoSinglePlayer() {
 			
 			iconoX.classList.add('mostrar-icono');
 			casillaId.style.pointerEvents = "none";			
-				
+			
+			await delay(10);
+
 			const valorX = arregloCoordenadas[0];
 			const valorY = arregloCoordenadas[1];
 
