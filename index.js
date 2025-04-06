@@ -142,7 +142,9 @@ async function generarJuegoSinglePlayer() {
 					generarVentanaModal(ganaElJugador1);	
 					reiniciarTablaCasillas();
 					casillasOcupadas = [];
-					casillasOcupadasX = [];					
+					casillasOcupadasX = [];		
+					return;
+								
 			} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
 					const coordenada4 = "1-0";
 					const coordenada5 = "1-1";
@@ -151,7 +153,8 @@ async function generarJuegoSinglePlayer() {
 					generarVentanaModal(ganaElJugador1);
 					reiniciarTablaCasillas();
 					casillasOcupadas = [];
-					casillasOcupadasX = [];					
+					casillasOcupadasX = [];	
+					return;				
 			} else if (tablaCasillas[2][0] === "x" && tablaCasillas[2][1] === "x" && tablaCasillas[2][2] === "x") {
 					const coordenada7 = "2-0";
 					const coordenada8 = "2-1";
@@ -160,7 +163,8 @@ async function generarJuegoSinglePlayer() {
 					generarVentanaModal(ganaElJugador1);
 					reiniciarTablaCasillas();	
 					casillasOcupadas = [];
-					casillasOcupadasX = [];					
+					casillasOcupadasX = [];	
+					return;				
 			} else if (tablaCasillas[0][0] === "x" && tablaCasillas[1][0] === "x" && tablaCasillas[2][0] === "x") {
 					const coordenada10 = "0-0";
 					const coordenada11 = "1-0";
@@ -170,6 +174,7 @@ async function generarJuegoSinglePlayer() {
 					reiniciarTablaCasillas();
 					casillasOcupadas = [];
 					casillasOcupadasX = [];
+					return;
 			} else if (tablaCasillas[0][1] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][1] === "x") {
 					const coordenada13 = "0-1";
 					const coordenada14 = "1-1";
@@ -178,7 +183,8 @@ async function generarJuegoSinglePlayer() {
 					generarVentanaModal(ganaElJugador1);
 					reiniciarTablaCasillas();
 					casillasOcupadas = [];
-					casillasOcupadasX = [];					
+					casillasOcupadasX = [];		
+					return;			
 			} else if (tablaCasillas[0][2] === "x" && tablaCasillas[1][2] === "x" && tablaCasillas[2][2] === "x") {
 					const coordenada16 = "0-2";
 					const coordenada17 = "1-2";
@@ -187,7 +193,8 @@ async function generarJuegoSinglePlayer() {
 					generarVentanaModal(ganaElJugador1);		
 					reiniciarTablaCasillas();
 					casillasOcupadas = [];
-					casillasOcupadasX = [];					
+					casillasOcupadasX = [];	
+					return;				
 			} else if (tablaCasillas[0][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][2] === "x") {
 					const coordenada19 = "0-0";
 					const coordenada20 = "1-1";
@@ -197,6 +204,7 @@ async function generarJuegoSinglePlayer() {
 					reiniciarTablaCasillas();
 					casillasOcupadas = [];
 					casillasOcupadasX = [];
+					return;
 			} else if (tablaCasillas[0][2] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[2][0] === "x") {
 					const coordenada22 = "0-2";
 					const coordenada23 = "1-1";
@@ -206,11 +214,14 @@ async function generarJuegoSinglePlayer() {
 					reiniciarTablaCasillas();
 					casillasOcupadas = [];
 					casillasOcupadasX = [];
+					return;
 			} else if(contadorDeCasillasOcupadas === 9) {
 					generarVentanaModal(empate);
 					casillasOcupadas = [];
 					reiniciarTablaCasillas();
-					casillasOcupadasX = [];}
+					casillasOcupadasX = [];
+					return;
+				}
 	
 			asignarCasillaDeFormaAutomatica(contadorDeCasillasOcupadas);
 			contadorDeCasillasOcupadas++;
@@ -508,6 +519,7 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
+		return;
 	} else if (tablaCasillas[1][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[1][2] === "o") {
 		const coordenada4 = "1-0";
 		const coordenada5 = "1-1";
@@ -517,6 +529,7 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
+		return;
 	} else if (tablaCasillas[2][0] === "o" && tablaCasillas[2][1] === "o" && tablaCasillas[2][2] === "o") {
 		const coordenada7 = "2-0";
 		const coordenada8 = "2-1";
@@ -526,6 +539,7 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];	
 		reiniciarTablaCasillas();
+		return;
 	} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][0] === "o" && tablaCasillas[2][0] === "o") {
 		const coordenada10 = "0-0";
 		const coordenada11 = "1-0";
@@ -535,6 +549,7 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
+		return;
 	} else if (tablaCasillas[0][1] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][1] === "o") {
 		const coordenada13 = "0-1";
 		const coordenada14 = "1-1";
@@ -544,6 +559,7 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
+		return;
 	} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][2] === "o" && tablaCasillas[2][2] === "o") {
 		const coordenada16 = "0-2";
 		const coordenada17 = "1-2";
@@ -553,6 +569,7 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
+		return;
 	} else if (tablaCasillas[0][0] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][2] === "o") {
 		const coordenada19 = "0-0";
 		const coordenada20 = "1-1";
@@ -562,6 +579,7 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
+		return;
 	} else if (tablaCasillas[0][2] === "o" && tablaCasillas[1][1] === "o" && tablaCasillas[2][0] === "o") {
 		const coordenada22 = "0-2";
 	    const coordenada23 = "1-1";
@@ -571,11 +589,13 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
+		return;
 	} else if(contadorDeCasillasOcupadas === 9) {
 		generarVentanaModal(empate);
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
+		return;
 	}}
 
 async function mostrarOpcionesDeJuego() {
