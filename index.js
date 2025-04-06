@@ -1,4 +1,5 @@
-// TERMINAR ANTES DEL NUEVO INICIO DE SEMANA
+// TERMINAR ANTES DEL NUEVO INICIO DE SEMANA.
+// ARREGLAR PROBLEMA DE QUE
 
 const botonPlay = document.getElementById('play-boton');
 const pantallaInicial = document.querySelector('.pantalla-inicial');
@@ -37,12 +38,14 @@ const bloquearTemporalmenteCasillasVacias = (casillaAColocar) => {
 		const casillas = document.querySelectorAll('.casilla');
 		casillas.forEach(casilla => {
 			if (casilla !== casillaAColocar) {
-				casilla.style.pointerEvents = "none";
+				casillaAColocar.style.pointerEvents = "none";
 			}
 		});
 	
 		setTimeout(casillas.forEach(casilla => {
-			if (casilla !== casillaAColocar) {
+			if (casillasOcupadasX.includes(casillaAColocar)) {
+				casillaAColocar.style.pointerEvents = "none";
+			} else {
 				casilla.style.pointerEvents = "auto";
 			}
 		}),2000);
@@ -144,7 +147,7 @@ async function generarJuegoSinglePlayer() {
 					casillasOcupadas = [];
 					casillasOcupadasX = [];		
 					return;
-								
+
 			} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
 					const coordenada4 = "1-0";
 					const coordenada5 = "1-1";
