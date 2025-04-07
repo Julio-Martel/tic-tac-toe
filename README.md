@@ -5,3 +5,5 @@ Pon a prueba tu lógica y estrategia en este juego de dos jugadores donde el obj
 Desarrollado con HTML, CSS y JavaScript puro, este juego simple pero entretenido te garantiza unos minutos de diversión.
 </p>
 <img src = "imagesGit/ilustracion1.jpg" />
+<img src = "imagesGit/ilustracion2.jpg" />
+<img src = "imagesGit/ilustracion3.jpg" />
