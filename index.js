@@ -1,6 +1,3 @@
-// TERMINAR ANTES DEL NUEVO INICIO DE SEMANA.
-// ARREGLAR PROBLEMA DE QUE
-
 const botonPlay = document.getElementById('play-boton');
 const pantallaInicial = document.querySelector('.pantalla-inicial');
 const contenidoPrincipal = document.querySelector('.contenido-principal');
@@ -37,9 +34,9 @@ const bloquearTemporalmenteCasillasVacias = (casillaAColocar) => {
 	return new Promise(resolve => {
 		const casillas = document.querySelectorAll('.casilla');
 		casillas.forEach(casilla => {
-			if (casilla !== casillaAColocar) {
+			if (casilla === casillaAColocar) {
 				casillaAColocar.style.pointerEvents = "none";
-			}
+			} 
 		});
 	
 		setTimeout(casillas.forEach(casilla => {
@@ -48,9 +45,9 @@ const bloquearTemporalmenteCasillasVacias = (casillaAColocar) => {
 			} else {
 				casilla.style.pointerEvents = "auto";
 			}
-		}),2000);
+		}),500);
 
-		setTimeout(resolve,2000);
+		setTimeout(resolve,500);
 
 	});}
 
@@ -228,7 +225,6 @@ async function generarJuegoSinglePlayer() {
 	
 			asignarCasillaDeFormaAutomatica(contadorDeCasillasOcupadas);
 			contadorDeCasillasOcupadas++;
-			console.log(contadorDeCasillasOcupadas)
 			await bloquearTemporalmenteCasillasVacias(casillaId);
 			await delay(700);})
 	}}
@@ -475,38 +471,35 @@ async function generarBrillo(coord1,coord2,coord3) {
 async function asignarCasillaDeFormaAutomatica() {
 	const iconoO = document.createElement("img");
 	const ganaLaMaquina = "Has perdido";
-	const empate = "Empate!"
-	let casillaExistente;
+	const empate = "¡Empate!";
+	let casillaLibre;
 
 	do {
+		const x = Math.floor(Math.random() * 3);
+		const y = Math.floor(Math.random() * 3);
+		const id = `${x}-${y}`;
+		const casilla = document.getElementById(id);
 
-		const valorEjeX = Math.floor(Math.random() * 3);
-		const valorEjeY = Math.floor(Math.random() * 3);
-		const casillaValue = `${valorEjeX}-${valorEjeY}`;
-		const casillaId = document.getElementById(casillaValue);
-
-		casillaExistente = casillasOcupadas.includes(casillaId);
-
-		if (casillaExistente === false) {
-			casillasOcupadas.push(casillaId);
-			casillaExistente = casillaId;
+		if (casilla && !casillasOcupadas.includes(casilla)) {
+			casillasOcupadas.push(casilla);
+			casillaLibre = casilla;
 			break;
 		}
+	} while (!casillaLibre);
 
-	} while(casillaExistente !== false);
-
-	casillaExistente.appendChild(iconoO);
+	// ✅ Usamos casillaLibre, no casillaExistente
+	casillaLibre.appendChild(iconoO);
 
 	iconoO.src = "images/Tc-O-min.png";
 	iconoO.classList.add('tamaño-icono');
-	
+
 	await delay(50);
 
 	iconoO.classList.add('mostrar-icono');
-	casillaExistente.style.pointerEvents = "none";
+	casillaLibre.style.pointerEvents = "none";
 
-	const coordenadasCasilla = casillaExistente.getAttribute('data-value');
-	const arregloCoordenadas = 	coordenadasCasilla.split('-');
+	const coordenadasCasilla = casillaLibre.getAttribute('data-value');
+	const arregloCoordenadas = coordenadasCasilla.split('-');
 
 	const valorX = arregloCoordenadas[0];
 	const valorY = arregloCoordenadas[1];
