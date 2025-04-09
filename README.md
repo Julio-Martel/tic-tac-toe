@@ -7,4 +7,4 @@ Desarrollado con HTML, CSS y JavaScript puro, este juego simple pero entretenido
 <img src = "imagesGit/ilustracion1.jpg" />
 <img src = "imagesGit/ilustracion2.jpg" />
 <img src = "imagesGit/ilustracion3.jpg" />
-<li href="https://tic-tac-toe-game-version1.netlify.app/">Prueba el juego aqui</li>
+<a href="https://tic-tac-toe-game-version1.netlify.app/">Prueba el juego aqui</a>
