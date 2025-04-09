@@ -132,8 +132,6 @@ async function generarJuegoSinglePlayer() {
 			tablaCasillas[valorX][valorY] = "x";
 			contadorDeCasillasOcupadas++;
 
-			console.log(contadorDeCasillasOcupadas);
-
 			if (tablaCasillas[0][0] === "x" && tablaCasillas[0][1] === "x" && tablaCasillas[0][2] === "x") {			
 					const coordenada1 = "0-0";
 					const coordenada2 = "0-1";
@@ -144,7 +142,6 @@ async function generarJuegoSinglePlayer() {
 					casillasOcupadas = [];
 					casillasOcupadasX = [];		
 					return;
-
 			} else if (tablaCasillas[1][0] === "x" && tablaCasillas[1][1] === "x" && tablaCasillas[1][2] === "x") {
 					const coordenada4 = "1-0";
 					const coordenada5 = "1-1";
