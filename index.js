@@ -10,7 +10,7 @@ const botonCerrarModalMenu = document.getElementById('boton-cerrar-menu');
 let casillasOcupadas = [];
 let casillasOcupadasX = [];
 let contadorDeCasillasOcupadas = 0;
-
+sadasdasdasd
 const tablaCasillas = [[0,0,0],[0,0,0],[0,0,0]];
 
 iconoMenu.addEventListener('click', () => {
