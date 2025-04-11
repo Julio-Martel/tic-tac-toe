@@ -10,7 +10,7 @@ const botonCerrarModalMenu = document.getElementById('boton-cerrar-menu');
 let casillasOcupadas = [];
 let casillasOcupadasX = [];
 let contadorDeCasillasOcupadas = 0;
-sadasdasdasd
+
 const tablaCasillas = [[0,0,0],[0,0,0],[0,0,0]];
 
 iconoMenu.addEventListener('click', () => {
@@ -217,8 +217,7 @@ async function generarJuegoSinglePlayer() {
 					casillasOcupadas = [];
 					reiniciarTablaCasillas();
 					casillasOcupadasX = [];
-					return;
-				}
+					return;}
 	
 			asignarCasillaDeFormaAutomatica(contadorDeCasillasOcupadas);
 			contadorDeCasillasOcupadas++;
@@ -347,9 +346,7 @@ async function generarJuegoMultiPlayer() {
 					generarBrillo(coordenada22,coordenada23,coordenada24);						
 					generarVentanaModal(ganaElJugador1);
 				} else if(contadorDeCasillasOcupadas === 9) {
-					generarVentanaModal(empate);
-
-				}
+					generarVentanaModal(empate);}
 		
 			} else {
 				
@@ -416,9 +413,7 @@ async function generarJuegoMultiPlayer() {
 					generarBrillo(coordenada22,coordenada23,coordenada24);						
 					generarVentanaModal(ganaElJugador2);
 				} else if(contadorDeCasillasOcupadas === 9) {
-					generarVentanaModal(empate);
-
-				}				
+					generarVentanaModal(empate);}				
 			}
 
 		});
@@ -484,7 +479,6 @@ async function asignarCasillaDeFormaAutomatica() {
 		}
 	} while (!casillaLibre);
 
-	// ✅ Usamos casillaLibre, no casillaExistente
 	casillaLibre.appendChild(iconoO);
 
 	iconoO.src = "images/Tc-O-min.png";
@@ -588,8 +582,7 @@ async function asignarCasillaDeFormaAutomatica() {
 		casillasOcupadas = [];	
 		casillasOcupadasX = [];
 		reiniciarTablaCasillas();
-		return;
-	}}
+		return;}}
 
 async function mostrarOpcionesDeJuego() {
 	
